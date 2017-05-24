@@ -1,0 +1,108 @@
+# Top level playbook to configure macOS for software development
+
+---
+- hosts: all
+
+  tasks:
+
+  #
+  ## macOS customisations
+  - name: Enable 'Tap to click' trackpad preference
+    osx_defaults:
+      domain: com.apple.AppleMultitouchTrackpad
+      key: Clicking
+      type: bool
+      value: 1
+      state: present
+
+  - name: Enable 'Tap to click' trackpad driver preferences
+    osx_defaults:
+      domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+      key: Clicking
+      type: bool
+      value: 1
+      state: present
+
+  - name: Enable 'Tap to click' in Trackpad preferences panel
+    osx_defaults:
+      host: currentHost
+      key: com.apple.mouse.tapBehavior
+      type: int
+      value: 1
+      state: present
+
+  - name: Enable 'Secondary click' trackpad preferences
+    osx_defaults:
+      domain: com.apple.AppleMultitouchTrackpad
+      key: TrackpadRightClick
+      type: bool
+      value: 1
+      state: present
+
+  - name: Enable 'Secondary click' trackpad driver preferences
+    osx_defaults:
+      domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+      key: TrackpadRightClick
+      type: bool
+      value: 1
+      state: present
+
+  - name: Enable 'Secondary click' in Trackpad preference panel
+    osx_defaults:
+      host: currentHost
+      key: com.apple.trackpad.enableSecondaryClick
+      type: bool
+      value: 1
+      state: present
+
+#
+## General applications (group further? productivity, video, music)
+# 1password
+# Dropbox
+# Evernote
+# Quick Look Markdown viewer
+# Microsoft Office
+# Google Chrome
+# Avira Antivirus
+# Things
+# Synology Cloud Station
+# Arduino
+# Firefox
+# NeoOffice
+# Oversight
+# HipChat
+# VLC
+# Handbrake
+# Discord
+# Android File Transfer
+# SD Card Formatter
+
+#
+## Development environments
+
+
+## General
+# Microsoft Visual Code
+
+## Virtualisation/DevOps
+# VirtualBox
+# Vagrant
+# Packer
+# Terraform
+# Puppet
+# Docker for Mac
+
+## Ruby
+# chruby
+# ruby-install
+
+## Python
+
+## Java
+
+## Shell environment (ssh keys, dot configuration files)
+# EC2
+# SSH
+# Maven
+# vim
+
