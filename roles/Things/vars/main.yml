@@ -1,0 +1,1 @@
+license_dir: "{{ ansible_user_dir }}/Library/Application Support/Cultured Code"

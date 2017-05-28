@@ -1,0 +1,6 @@
+---
+
+- name: Install Arduino
+  homebrew_cask:
+    name: arduino
+    state: present

@@ -1,0 +1,19 @@
+---
+
+- name: Install Things 2.0
+  homebrew_cask:
+    name: things
+    state: present
+
+- name: Create directory for license
+  file:
+    path: "{{ license_dir }}"
+    state: directory
+
+- name: Copy Things license into place
+  copy:
+    src: files/Licenses.plist
+    dest: "{{ license_dir }}/Licenses.plist"
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0644

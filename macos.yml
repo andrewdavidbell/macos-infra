@@ -3,15 +3,16 @@
 ---
 - hosts: all
 
-  tasks:
+  pre_tasks:
 
   #
   ## macOS customisations
+  #
   - name: Enable 'Tap to click' trackpad preference
     osx_defaults:
       domain: com.apple.AppleMultitouchTrackpad
       key: Clicking
-      type: bool
+      type: boolean
       value: 1
       state: present
 
@@ -19,7 +20,7 @@
     osx_defaults:
       domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
       key: Clicking
-      type: bool
+      type: boolean
       value: 1
       state: present
 
@@ -27,7 +28,7 @@
     osx_defaults:
       host: currentHost
       key: com.apple.mouse.tapBehavior
-      type: int
+      type: integer
       value: 1
       state: present
 
@@ -35,7 +36,7 @@
     osx_defaults:
       domain: com.apple.AppleMultitouchTrackpad
       key: TrackpadRightClick
-      type: bool
+      type: boolean
       value: 1
       state: present
 
@@ -43,7 +44,7 @@
     osx_defaults:
       domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
       key: TrackpadRightClick
-      type: bool
+      type: boolean
       value: 1
       state: present
 
@@ -51,22 +52,75 @@
     osx_defaults:
       host: currentHost
       key: com.apple.trackpad.enableSecondaryClick
-      type: bool
+      type: boolean
       value: 1
       state: present
 
-#
-## General applications (group further? productivity, video, music)
-# 1password
-# Dropbox
-# Evernote
+# Laptop only
+  - name: Show battery percentage
+    osx_defaults:
+      domain: com.apple.menuextra.battery
+      key: ShowPercent
+      type: string
+      value: "YES"
+      state: present
+
+  - name: Set Clock to be digital
+    osx_defaults:
+      domain: com.apple.menuextra.clock
+      key: IsAnalog
+      type: boolean
+      value: 0
+      state: present
+
+  - name: Set Clock format
+    osx_defaults:
+      domain: com.apple.menuextra.clock
+      key: DateFormat
+      type: string
+      value: "EEE HH:mm"
+      state: present
+
+  - name: Flash the time separators
+    osx_defaults:
+      domain: com.apple.menuextra.clock
+      key: FlashDateSeparators
+      type: boolean
+      value: 1
+      state: present
+
+
+  #
+  ## Homebrew
+  #
+  - name: Install Homebrew
+    command: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    args:
+      creates: /usr/local/bin/brew
+
+  #
+  ## General applications (group further? productivity, video, music)
+  #
+
+# Do we create an Ansible role for each application? Yes, it looks like it.
+# DMG
+# Configuration
+# Templates
+# Licenses
+# macOS defaults
+
+  roles:
+
+    #- 1Password
+    #- Dropbox
+    #- Evernote
 # Quick Look Markdown viewer
 # Microsoft Office
 # Google Chrome
 # Avira Antivirus
-# Things
-# Synology Cloud Station
-# Arduino
+    - Things
+    - Arduino
+    - f.lux
 # Firefox
 # NeoOffice
 # Oversight
@@ -77,12 +131,15 @@
 # Android File Transfer
 # SD Card Formatter
 
+#    - synology-nas
 #
 ## Development environments
 
+#    - github
 
 ## General
 # Microsoft Visual Code
+#    - visual-studio-code
 
 ## Virtualisation/DevOps
 # VirtualBox
