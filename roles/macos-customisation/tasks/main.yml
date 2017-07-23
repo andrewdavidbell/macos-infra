@@ -1,0 +1,82 @@
+---
+- name: Enable 'Tap to click' trackpad preference
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: Clicking
+    type: boolean
+    value: 1
+    state: present
+
+- name: Enable 'Tap to click' trackpad driver preferences
+  osx_defaults:
+    domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: Clicking
+    type: boolean
+    value: 1
+    state: present
+
+- name: Enable 'Tap to click' in Trackpad preferences panel
+  osx_defaults:
+    host: currentHost
+    key: com.apple.mouse.tapBehavior
+    type: integer
+    value: 1
+    state: present
+
+- name: Enable 'Secondary click' trackpad preferences
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: TrackpadRightClick
+    type: boolean
+    value: 1
+    state: present
+
+- name: Enable 'Secondary click' trackpad driver preferences
+  osx_defaults:
+    domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadRightClick
+    type: boolean
+    value: 1
+    state: present
+
+- name: Enable 'Secondary click' in Trackpad preference panel
+  osx_defaults:
+    host: currentHost
+    key: com.apple.trackpad.enableSecondaryClick
+    type: boolean
+    value: 1
+    state: present
+
+- name: Show battery percentage
+  osx_defaults:
+    domain: com.apple.menuextra.battery
+    key: ShowPercent
+    type: string
+    value: "YES"
+    state: present
+  when: ansible_model == "MacBookPro11,5"
+
+- name: Set Clock to be digital
+  osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: IsAnalog
+    type: boolean
+    value: 0
+    state: present
+
+- name: Set Clock format
+  osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: DateFormat
+    type: string
+    value: "EEE HH:mm"
+    state: present
+
+- name: Flash the time separators
+  osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: FlashDateSeparators
+    type: boolean
+    value: 1
+    state: present
+
