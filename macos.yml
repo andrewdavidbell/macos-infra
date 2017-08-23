@@ -13,3 +13,5 @@
   roles:
     - role: macos-customisation
     - role: github
+    - role: arduino
+    - role: flux

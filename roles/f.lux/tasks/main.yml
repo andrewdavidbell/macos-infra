@@ -1,9 +1,0 @@
----
-# https://justgetflux.com
-
-- name: Unarchive f.lux
-  unarchive:
-    src: files/Flux.zip
-    dest: /Applications
-    creates: /Applications/Flux.app
-
