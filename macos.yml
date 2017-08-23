@@ -6,9 +6,10 @@
 
   pre_tasks:
     - name: Install Homebrew
-      command: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      script: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
       args:
         creates: /usr/local/bin/brew
 
   roles:
     - role: macos-customisation
+    - role: github

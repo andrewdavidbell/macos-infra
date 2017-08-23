@@ -1,0 +1,18 @@
+---
+- name: "Git's per-user configuration"
+  copy:
+    src: gitconfig
+    dest: "{{ansible_user_dir}}/.gitconfig"
+    owner: "{{ansible_user_id}}"
+    group: staff
+    mode: 0644
+  no_log: true
+
+- name: Install github private key
+  copy:
+    src: id_github
+    dest: "{{ansible_user_dir}}/.ssh/id_github"
+    owner: "{{ansible_user_id}}"
+    group: staff
+    mode: 0600
+  no_log: true
