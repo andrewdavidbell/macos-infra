@@ -1,12 +1,14 @@
----
-- name: "Git's per-user configuration"
-  copy:
-    src: gitconfig
-    dest: "{{ansible_user_dir}}/.gitconfig"
-    owner: "{{ansible_user_id}}"
-    group: staff
-    mode: 0644
-  no_log: true
+- name: Set name in global git configuration
+  git_config:
+    name: user.name
+    scope: global
+    value: "Andrew Bell"
+
+- name: Set email in global git configuration
+  git_config:
+    name: user.email
+    scope: global
+    value: "andrew.bell@icloud.com"
 
 - name: Install github private key
   copy:
