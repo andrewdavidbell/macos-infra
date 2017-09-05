@@ -1,4 +1,4 @@
-- name: Install f.lux
+- name: Install Flux
   homebrew_cask:
     name: flux
     state: present

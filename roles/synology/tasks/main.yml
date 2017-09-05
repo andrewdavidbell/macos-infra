@@ -1,0 +1,9 @@
+- name: Install Tap for Synology applications
+  homebrew_tap:
+    name: caskroom/drivers
+    state: present
+
+- name: Install Synology Cloud Station
+  homebrew_cask:
+    name: synology-cloud-station-drive
+    state: present

@@ -16,3 +16,4 @@
     - role: arduino
     - role: flux
     - role: virtualbox
+    - role: synology
