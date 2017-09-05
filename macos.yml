@@ -12,6 +12,7 @@
 
   roles:
     - role: macos-customisation
+    - role: 1password
     - role: github
     - role: arduino
     - role: flux
