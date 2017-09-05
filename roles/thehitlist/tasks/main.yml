@@ -1,0 +1,4 @@
+- name: Install The Hit List
+  homebrew_cask:
+    name: the-hit-list
+    state: present

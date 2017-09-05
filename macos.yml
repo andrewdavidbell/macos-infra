@@ -13,8 +13,9 @@
   roles:
     - role: macos-customisation
     - role: 1password
+    - role: flux
+    - role: thehitlist
+    - role: synology
     - role: github
     - role: arduino
-    - role: flux
     - role: virtualbox
-    - role: synology
