@@ -1,4 +1,3 @@
----
 - name: Enable 'Tap to click' trackpad preference
   osx_defaults:
     domain: com.apple.AppleMultitouchTrackpad

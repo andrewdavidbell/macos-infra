@@ -1,0 +1,9 @@
+- name: Install VirtualBox 
+  homebrew_cask:
+    name: virtualbox
+    state: present
+
+- name: Install VirtualBox Extension Pack
+  homebrew_cask:
+    name: virtualbox-extension-pack
+    state: present
