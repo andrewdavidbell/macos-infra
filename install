@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+[[ "$TRACE" ]] && set -x
+
+#
+# Unattended installation of Apple XCode Command Line Development Tools
+#
+install_xcode() {
+    if xcode-select -p > /dev/null 2>&1
+    then
+        echo XCode Command Line Development Tools already installed
+    else
+        echo Installing XCode Command Line Development Tools
+
+        touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+        PROD=$(softwareupdate -l |
+        grep "\*.*Command Line" |
+        head -n 1 | awk -F"*" '{print $2}' |
+        sed -e 's/^ *//' |
+        tr -d '\n')
+
+        softwareupdate -i "$PROD"
+    fi
+
+    # Accept any Xcode license agreement
+    #$(sudo xcodebuild -license accept)
+}
+
+install_homebrew() {
+    if [ -x "$(command -v /usr/local/bin/brew)" ]
+    then
+        echo Homebrew already installed
+    else
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null
+    fi
+}
+
+install_ansible() {
+    if brew ls --versions ansible > /dev/null 2>&1
+    then
+        echo Homebrew ansible formula already installed
+    else
+        brew install ansible
+    fi
+}
+
+#
+# Create a macOS keychain entry and password lookup file for the Ansible Vault password
+#
+install_ansible_vault_password() {
+    local ACCOUNT_NAME="macos-infra"
+    local SERVICE="Ansible Vault"
+
+    /usr/bin/security find-generic-password -a "$ACCOUNT_NAME" -s "$SERVICE" > /dev/null 2>&1
+    if [[ $? -eq 0 ]]
+    then
+        echo Keychain entry for Ansible Vault password already installed
+    else
+        /usr/bin/security add-generic-password -a "$ACCOUNT_NAME" -s "$SERVICE" "$HOME/Library/Keychains/login.keychain-dba" -w
+    fi
+
+    local VAULT_PASSWORD_FILE="./vault_password_file"
+
+    if [[ ! -e "$VAULT_PASSWORD_FILE" ]]
+    then
+	cat <<- EOF > "$VAULT_PASSWORD_FILE"
+#!/usr/bin/env bash
+
+/usr/bin/security find-generic-password -a "$ACCOUNT_NAME" -s "$SERVICE" -w
+EOF
+
+        chmod +x "$VAULT_PASSWORD_FILE"
+    fi
+}
+
+main() {
+    install_xcode
+    install_homebrew
+    install_ansible
+    install_ansible_vault_password
+
+    cd /tmp/
+    git clone https://github.com/andrewdavidbell/macos-infra.git
+    cd macos-infra/
+    ansible-playbook macos.yml
+}
+
+main

@@ -4,18 +4,12 @@
 - name: Provision macOS-based machine
   hosts: macos
 
-  pre_tasks:
-    - name: Install Homebrew
-      shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-      args:
-        creates: /usr/local/bin/brew
-
   roles:
     - role: macos-customisation
-    - role: 1password
-    - role: flux
-    - role: thehitlist
-    - role: synology
-    - role: github
-    - role: arduino
-    - role: virtualbox
+  #  - role: synology
+  #  - role: 1password
+  #  - role: flux
+  #  - role: thehitlist
+  #  - role: github
+  #  - role: arduino
+  #  - role: virtualbox
