@@ -32,10 +32,10 @@ install_ansible_vault_password() {
     then
         echo Keychain entry for Ansible Vault password already installed
     else
-        /usr/bin/security add-generic-password -a "$ACCOUNT_NAME" -s "$SERVICE" "$HOME/Library/Keychains/login.keychain-db" -w
+        /usr/bin/security add-generic-password -a "$ACCOUNT_NAME" -s "$SERVICE" -w
     fi
 
-    local VAULT_PASSWORD_FILE="./macos-infra/vault_password_file"
+    local VAULT_PASSWORD_FILE="./vault_password_file"
 
     if [[ ! -e "$VAULT_PASSWORD_FILE" ]]
     then
@@ -54,9 +54,10 @@ main() {
     install_ansible
 
     git clone https://github.com/andrewdavidbell/macos-infra.git
-    install_ansible_vault_password
+    cd ./macos-infra
 
-    ./macos-infra/ansible-playbook macos.yml
+    install_ansible_vault_password
+    ansible-playbook macos.yml
 }
 
 main
