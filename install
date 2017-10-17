@@ -2,30 +2,6 @@
 
 [[ "$TRACE" ]] && set -x
 
-#
-# Unattended installation of Apple XCode Command Line Development Tools
-#
-install_xcode() {
-    if xcode-select -p > /dev/null 2>&1
-    then
-        echo XCode Command Line Development Tools already installed
-    else
-        echo Installing XCode Command Line Development Tools
-
-        touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
-        PROD=$(softwareupdate -l |
-        grep "\*.*Command Line" |
-        head -n 1 | awk -F"*" '{print $2}' |
-        sed -e 's/^ *//' |
-        tr -d '\n')
-
-        softwareupdate -i "$PROD"
-    fi
-
-    # Accept any Xcode license agreement
-    #$(sudo xcodebuild -license accept)
-}
-
 install_homebrew() {
     if [ -x "$(command -v /usr/local/bin/brew)" ]
     then
@@ -56,14 +32,14 @@ install_ansible_vault_password() {
     then
         echo Keychain entry for Ansible Vault password already installed
     else
-        /usr/bin/security add-generic-password -a "$ACCOUNT_NAME" -s "$SERVICE" "$HOME/Library/Keychains/login.keychain-dba" -w
+        /usr/bin/security add-generic-password -a "$ACCOUNT_NAME" -s "$SERVICE" "$HOME/Library/Keychains/login.keychain-db" -w
     fi
 
-    local VAULT_PASSWORD_FILE="./vault_password_file"
+    local VAULT_PASSWORD_FILE="./macos-infra/vault_password_file"
 
     if [[ ! -e "$VAULT_PASSWORD_FILE" ]]
     then
-	cat <<- EOF > "$VAULT_PASSWORD_FILE"
+	cat << EOF > "$VAULT_PASSWORD_FILE"
 #!/usr/bin/env bash
 
 /usr/bin/security find-generic-password -a "$ACCOUNT_NAME" -s "$SERVICE" -w
@@ -74,15 +50,13 @@ EOF
 }
 
 main() {
-    install_xcode
     install_homebrew
     install_ansible
+
+    git clone https://github.com/andrewdavidbell/macos-infra.git
     install_ansible_vault_password
 
-    cd /tmp/
-    git clone https://github.com/andrewdavidbell/macos-infra.git
-    cd macos-infra/
-    ansible-playbook macos.yml
+    ./macos-infra/ansible-playbook macos.yml
 }
 
 main
