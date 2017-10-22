@@ -6,10 +6,10 @@
 
   roles:
     - role: macos-customisation
-  #  - role: synology
-  #  - role: 1password
-  #  - role: flux
-  #  - role: thehitlist
-  #  - role: github
-  #  - role: arduino
-  #  - role: virtualbox
+    - role: synology
+    - role: 1password
+    - role: github
+    - role: thehitlist
+    - role: flux
+    - role: arduino
+    - role: virtualbox

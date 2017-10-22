@@ -1,3 +1,8 @@
+- name: Install git
+  homebrew:
+    name: git
+    state: present
+
 - name: Set name in global git configuration
   git_config:
     name: user.name
@@ -8,13 +13,24 @@
   git_config:
     name: user.email
     scope: global
-    value: "andrew.bell@icloud.com"
+    value: "{{ github.user_email }}"
+  no_log: True
 
-- name: Install github private key
-  copy:
-    src: id_github
-    dest: "{{ansible_user_dir}}/.ssh/id_github"
-    owner: "{{ansible_user_id}}"
-    group: staff
-    mode: 0600
-  no_log: true
+- name: Check for github entry in keychain
+  commmand: >
+    /usr/bin/security find-internet-password
+    -a "{{ github.keychain.account }}"
+    -s "{{ github.keychain.server }}"
+  register: result
+  no_log: True
+
+- name: Add github entry to keychain
+  command: >
+    /usr/bin/security add-internet-password
+    -a "{{ github.keychain.account }}"
+    -s "{{ github.keychain.server }}"
+    -w "{{ github.keychain.password }}"
+    -r "{{ github.keychain.protocol }}"
+    -T "{{ github.keychain.application }}"
+  when: result|failed
+  no_log: True
