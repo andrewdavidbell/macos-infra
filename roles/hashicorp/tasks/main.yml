@@ -1,0 +1,19 @@
+- name: Install Vagrant
+  homebrew_cask:
+    name: vagrant
+    state: present
+
+- name: Install Packer
+  homebrew:
+    name: packer
+    state: present
+
+- name: Install Terraform
+  homebrew:
+    name: terraform
+    state: present
+
+- name: Install Vault
+  homebrew:
+    name: vault
+    state: present

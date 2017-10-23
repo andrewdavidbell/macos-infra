@@ -1,6 +1,10 @@
 # Ansible macOS provisioning
 Ansible automation to configure my macOS-based machines for software development and personal use.
 
+## How to install
+Change directory to the location where you want the Ansible automation to be installed. Then issue the following command:
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infra/master/install)"
+
 ## Applications to be configured
 ### macOS Apps
 * 1Password
@@ -16,6 +20,8 @@ Ansible automation to configure my macOS-based machines for software development
 * Firefox
 * NeoOffice
 * Oversight
+* Little Snitch
+* Mirco Snitch
 * HipChat
 * Slack
 * VLC
@@ -28,7 +34,6 @@ Ansible automation to configure my macOS-based machines for software development
 * Epson Printer Utilities
 * Antivirus
 * Heli-X
-* f.lux
 * XLD
 * Microsoft Remote Desktop
 

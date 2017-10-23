@@ -6,10 +6,18 @@
 
   roles:
     - role: macos-customisation
+
+    # macOS applications
     - role: synology
     - role: 1password
-    - role: github
     - role: thehitlist
     - role: flux
+
+    # Development
+    - role: github
     - role: arduino
+
+    # DevOps
     - role: virtualbox
+    - role: hashicorp
+    - role: docker

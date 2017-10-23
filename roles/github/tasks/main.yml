@@ -17,7 +17,7 @@
   no_log: True
 
 - name: Check for github entry in keychain
-  commmand: >
+  command: >
     /usr/bin/security find-internet-password
     -a "{{ github.keychain.account }}"
     -s "{{ github.keychain.server }}"
