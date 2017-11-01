@@ -57,7 +57,7 @@ main() {
     cd ./macos-infra
 
     install_ansible_vault_password
-    ansible-playbook macos.yml
+    ansible-playbook -K macos.yml
 }
 
 main

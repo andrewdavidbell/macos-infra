@@ -12,6 +12,7 @@
     - role: 1password
     - role: thehitlist
     - role: flux
+    - role: snitch
 
     # Development
     - role: github

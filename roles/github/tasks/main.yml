@@ -21,6 +21,7 @@
     /usr/bin/security find-internet-password
     -a "{{ github.keychain.account }}"
     -s "{{ github.keychain.server }}"
+  ignore_errors: yes
   register: result
   no_log: True
 
