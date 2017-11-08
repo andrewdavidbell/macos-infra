@@ -1,0 +1,22 @@
+# Already installed because it's an Ansible dependency
+- name: Install Python 2
+  homebrew:
+    name: python
+    state: present
+
+- name: Install Python 3
+  homebrew:
+    name: python3
+    state: present
+
+- name: Install virtualenv
+  pip:
+    name: virtualenv
+
+- name: Install virtualenvwrapper
+  pip:
+    name: virtualenvwrapper
+
+- name: Install autopep8
+  pip:
+    name: autopep8

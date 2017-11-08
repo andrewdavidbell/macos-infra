@@ -17,6 +17,7 @@
     # Development
     - role: github
     - role: arduino
+    - role: python
 
     # DevOps
     - role: virtualbox

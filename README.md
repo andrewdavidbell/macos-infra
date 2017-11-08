@@ -8,20 +8,23 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infr
 ## Applications to be configured
 ### macOS Apps
 * 1Password
+* The Hit List
+* Arduino
+* f.lux
+* Little Snitch
+* Mirco Snitch
+* Synology Cloud Station
+* Synology Note Station
+
+#### macOS Apps TODO
 * Dropbox
 * Evernote
 * Quick Look Markdown viewer
 * Microsoft Office
 * Google Chrome
 * Things
-* The Hit List
-* Arduino
-* f.lux
 * Firefox
 * NeoOffice
-* Oversight
-* Little Snitch
-* Mirco Snitch
 * HipChat
 * Slack
 * VLC
@@ -29,10 +32,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infr
 * Discord
 * Android File Transfer
 * SD Card Formatter
-* Synology NoteStation
-* Synology CloudStation
 * Epson Printer Utilities
-* Antivirus
 * Heli-X
 * XLD
 * Microsoft Remote Desktop
@@ -43,9 +43,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infr
 * vim
 * Digital Ocean Tokens
 * Google Cloud API
-* Github
 
 ### Development
+* Github
 * SoapUI
 * Solarized Colors
 
@@ -54,7 +54,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infr
 * Atom
 
 ### Virtualisation/DevOps
-* VirtualBox (extension pack)
+# Ansible (installed as part of bootstrap)
+* VirtualBox (incl. extension pack)
 * Vagrant
 * Packer
 * Terraform
