@@ -13,6 +13,7 @@
     - role: thehitlist
     - role: flux
     - role: snitch
+    - role: chrome
 
     # Development
     - role: github
