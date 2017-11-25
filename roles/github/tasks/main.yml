@@ -3,6 +3,12 @@
     name: git
     state: present
 
+- name: We're not using a Github API token for Homebrew
+  lineinfile:
+    path: "{{ ansible_user_dir }}/.bash_profile"
+    regexp: '^export HOMEBREW_NO_GITHUB_API'
+    line: 'export HOMEBREW_NO_GITHUB_API=1'
+
 - name: Set name in global git configuration
   git_config:
     name: user.name
@@ -23,6 +29,7 @@
     -s "{{ github.keychain.server }}"
   ignore_errors: yes
   register: result
+  changed_when: false
   no_log: True
 
 - name: Add github entry to keychain
