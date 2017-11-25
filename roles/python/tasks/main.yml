@@ -20,3 +20,18 @@
 - name: Install autopep8
   pip:
     name: autopep8
+
+- name: Make directory for Python workspace
+  file:
+    path: "{{ ansible_user_dir }}/Code/python"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0700
+
+- name: Add alias for virtualenv
+  lineinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    regexp: '^alias venv='
+    line: 'alias venv="virtualenv --system-site-packages .env"'
+    create: yes

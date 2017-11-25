@@ -1,0 +1,3 @@
+# Personal profile for bash login shells
+
+[ -r ~/.bashrc ] && . ~/.bashrc

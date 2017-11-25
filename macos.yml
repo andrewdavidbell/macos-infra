@@ -16,6 +16,7 @@
     - role: chrome
 
     # Development
+    - role: bash
     - role: github
     - role: arduino
     - role: python

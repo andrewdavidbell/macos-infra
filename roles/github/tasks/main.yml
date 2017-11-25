@@ -5,9 +5,10 @@
 
 - name: We're not using a Github API token for Homebrew
   lineinfile:
-    path: "{{ ansible_user_dir }}/.bash_profile"
+    path: "{{ ansible_user_dir }}/.bashrc"
     regexp: '^export HOMEBREW_NO_GITHUB_API'
     line: 'export HOMEBREW_NO_GITHUB_API=1'
+    create: yes
 
 - name: Set name in global git configuration
   git_config:

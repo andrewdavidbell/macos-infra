@@ -1,0 +1,31 @@
+- name: Install ~/.bash_profile
+  copy:
+    src: bash_profile
+    dest: "{{ ansible_user_dir }}/.bash_profile"
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0644
+
+- name: Install ~/.bashrc
+  copy:
+    src: bashrc
+    dest: "{{ ansible_user_dir }}/.bashrc"
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0644
+
+- name: Create development code directory
+  file:
+    path: "{{ ansible_user_dir }}/Code"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0700
+
+- name: Create development data directory
+  file:
+    path: "{{ ansible_user_dir }}/Data"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0700

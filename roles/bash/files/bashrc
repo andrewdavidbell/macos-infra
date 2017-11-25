@@ -1,0 +1,5 @@
+# Personal environment file for interactive bash subshells
+
+alias ll='ls -l'
+alias mycode='cd ~/Code'
+alias mydata='cd ~/Data'
