@@ -21,6 +21,6 @@
   copy:
     src: License.plist
     dest: "{{ ansible_user_dir }}/Library/Application\ Support/Micro\ Snitch/"
-    owner: "{{ ansible_user }}"
+    owner: "{{ ansible_user_id }}"
     group: staff
     mode: 0644
