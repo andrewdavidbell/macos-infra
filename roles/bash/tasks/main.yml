@@ -6,13 +6,21 @@
     group: staff
     mode: 0644
 
-- name: Install ~/.bashrc
-  copy:
-    src: bashrc
+- name: Base ~/.bashrc
+  lineinfile:
     dest: "{{ ansible_user_dir }}/.bashrc"
     owner: "{{ ansible_user_id }}"
     group: staff
     mode: 0644
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    create: yes
+  with_items:
+    - { regexp: '^# Personal environment file',
+                                  line: '# Personal environment file for interactive bash subshells' }
+    - { regexp: '^alias ll=',     line: 'alias ll="ls - l"' }
+    - { regexp: '^alias mycode=', line: 'alias mycode="cd ~/Code"' }
+    - { regexp: '^alias mydata=', line: 'alias mydata="cd ~/Data"' }
 
 - name: Create development code directory
   file:

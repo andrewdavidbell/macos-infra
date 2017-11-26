@@ -21,13 +21,13 @@
     name: user.email
     scope: global
     value: "{{ github.user_email }}"
-  no_log: True
+  no_log: true
 
 - name: Check for github entry in keychain
   command: >
     /usr/bin/security find-internet-password
-    -a "{{ github.keychain.account }}"
-    -s "{{ github.keychain.server }}"
+    -a {{ github.keychain.account }}
+    -s {{ github.keychain.server }}
   ignore_errors: yes
   register: result
   changed_when: false
@@ -36,10 +36,10 @@
 - name: Add github entry to keychain
   command: >
     /usr/bin/security add-internet-password
-    -a "{{ github.keychain.account }}"
-    -s "{{ github.keychain.server }}"
-    -w "{{ github.keychain.password }}"
-    -r "{{ github.keychain.protocol }}"
-    -T "{{ github.keychain.application }}"
+    -a {{ github.keychain.account }}
+    -s {{ github.keychain.server }}
+    -w {{ github.keychain.password }}
+    -r {{ github.keychain.protocol }}
+    -T {{ github.keychain.application }}
   when: result|failed
-  no_log: True
+  no_log: true
