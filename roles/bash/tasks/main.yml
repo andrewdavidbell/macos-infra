@@ -18,9 +18,10 @@
   with_items:
     - { regexp: '^# Personal environment file',
                                   line: '# Personal environment file for interactive bash subshells' }
-    - { regexp: '^alias ll=',     line: 'alias ll="ls - l"' }
+    - { regexp: '^alias ll=',     line: 'alias ll="ls -l"' }
     - { regexp: '^alias mycode=', line: 'alias mycode="cd ~/Code"' }
     - { regexp: '^alias mydata=', line: 'alias mydata="cd ~/Data"' }
+    - { regexp: '^alias myvms=',  line: 'alias myvms="cd ~/Virtual\ Machines"' }
 
 - name: Create development code directory
   file:
@@ -30,9 +31,25 @@
     group: staff
     mode: 0700
 
+- name: Create development shell script directory
+  file:
+    path: "{{ ansible_user_dir }}/Code/shell"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0700
+
 - name: Create development data directory
   file:
     path: "{{ ansible_user_dir }}/Data"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0700
+
+- name: Create virtual machines directory
+  file:
+    path: "{{ ansible_user_dir }}/Virtual\ Machines"
     state: directory
     owner: "{{ ansible_user_id }}"
     group: staff
