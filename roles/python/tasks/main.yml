@@ -1,25 +1,62 @@
-# Already installed because it's an Ansible dependency
+# Python 2 (already installed because it's an Ansible dependency)
 - name: Install Python 2
   homebrew:
     name: python
     state: present
 
+# TODO use var for python paths
+
+- name: Install virtualenv for Python 2
+  pip:
+    name: virtualenv
+    executable: /usr/local/bin/pip2
+
+- name: Install virtualenvwrapper for Python 2
+  pip:
+    name: virtualenvwrapper
+    executable: /usr/local/bin/pip2
+
+- name: Install autopep8 for Python 2
+  pip:
+    name: autopep8
+    executable: /usr/local/bin/pip2
+
+- name: Add alias for virtualenv for Python 2
+  lineinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    regexp: '^alias venv2='
+    line: 'alias venv2="virtualenv --python /usr/local/bin/python2 --system-site-packages .env"'
+    create: yes
+
+
+# Python 3
 - name: Install Python 3
   homebrew:
     name: python3
     state: present
 
-- name: Install virtualenv
+- name: Install virtualenv for Python 3
   pip:
     name: virtualenv
+    executable: /usr/local/bin/pip3
 
-- name: Install virtualenvwrapper
+- name: Install virtualenvwrapper for Python 3
   pip:
     name: virtualenvwrapper
+    executable: /usr/local/bin/pip3
 
-- name: Install autopep8
+- name: Install pylint for Python 3
   pip:
-    name: autopep8
+    name: pylint
+    executable: /usr/local/bin/pip3
+
+- name: Add alias for virtualenv for Python 3
+  lineinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    regexp: '^alias venv3='
+    line: 'alias venv3="virtualenv --python /usr/local/bin/python3 --system-site-packages .env"'
+    create: yes
+
 
 - name: Make directory for Python workspace
   file:
@@ -28,10 +65,3 @@
     owner: "{{ ansible_user_id }}"
     group: staff
     mode: 0700
-
-- name: Add alias for virtualenv
-  lineinfile:
-    path: "{{ ansible_user_dir }}/.bashrc"
-    regexp: '^alias venv='
-    line: 'alias venv="virtualenv --system-site-packages .env"'
-    create: yes

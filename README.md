@@ -12,16 +12,16 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infr
 * Arduino
 * f.lux
 * Little Snitch
-* Mirco Snitch
+* Micro Snitch
 * Synology Cloud Station
 * Synology Note Station
+* Google Chrome
 
 #### macOS Apps TODO
 * Dropbox
 * Evernote
 * Quick Look Markdown viewer
 * Microsoft Office
-* Google Chrome
 * Things
 * Firefox
 * NeoOffice
@@ -50,7 +50,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infr
 * Solarized Colors
 
 ### IDEs
-* Microsoft Visual Code
+* Microsoft Visual Studio Code
 * Atom
 
 ### Virtualisation/DevOps
@@ -73,6 +73,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infr
 * jupyter
 * virtualenv
 * virtualenvwrapper
+* autopep8
+* pylint
 * Python work environment under ~/Code
 
 ### Java
