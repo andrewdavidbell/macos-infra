@@ -16,12 +16,17 @@
     line: "{{ item.line }}"
     create: yes
   with_items:
-    - { regexp: '^# Personal environment file',
-                                  line: '# Personal environment file for interactive bash subshells' }
-    - { regexp: '^alias ll=',     line: 'alias ll="ls -l"' }
+    - { regexp: '^# Personal resource file',
+                                  line: '# Personal resource file for Bash(1) interactive non-login shells' }
+    - { regexp: '^ ',             line: ' ' }
+    - { regexp: '^# Useful aliases',
+                                  line: '# Useful aliases' }
+    - { regexp: '^alias ls=',     line: 'alias ls="ls -G"' }
+    - { regexp: '^alias ll=',     line: 'alias ll="ls -lG"' }
+    - { regexp: '^alias la=',     line: 'alias la="ls -laG"' }
+    - { regexp: '^alias cd..=',   line: 'alias cd..="cd .."' }
     - { regexp: '^alias mycode=', line: 'alias mycode="cd ~/Code"' }
     - { regexp: '^alias mydata=', line: 'alias mydata="cd ~/Data"' }
-    - { regexp: '^alias myvms=',  line: 'alias myvms="cd ~/Virtual\ Machines"' }
 
 - name: Create development code directory
   file:
@@ -29,7 +34,7 @@
     state: directory
     owner: "{{ ansible_user_id }}"
     group: staff
-    mode: 0700
+    mode: 0755
 
 - name: Create development shell script directory
   file:
@@ -37,7 +42,7 @@
     state: directory
     owner: "{{ ansible_user_id }}"
     group: staff
-    mode: 0700
+    mode: 0755
 
 - name: Create development data directory
   file:
@@ -45,12 +50,4 @@
     state: directory
     owner: "{{ ansible_user_id }}"
     group: staff
-    mode: 0700
-
-- name: Create virtual machines directory
-  file:
-    path: "{{ ansible_user_dir }}/Virtual\ Machines"
-    state: directory
-    owner: "{{ ansible_user_id }}"
-    group: staff
-    mode: 0700
+    mode: 0755

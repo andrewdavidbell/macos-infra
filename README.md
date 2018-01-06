@@ -54,7 +54,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infr
 * Atom
 
 ### Virtualisation/DevOps
-# Ansible (installed as part of bootstrap)
+* Ansible (installed as part of bootstrap)
 * VirtualBox (incl. extension pack)
 * Vagrant
 * Packer
@@ -72,6 +72,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infr
 * ipython
 * jupyter
 * virtualenv
+* virtualenvwrapper
 * Python work environment under ~/Code
 
 ### Java
