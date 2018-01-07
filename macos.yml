@@ -20,6 +20,7 @@
     - role: github
     - role: arduino
     - role: python
+    - role: visual-studio-code
 
     # DevOps
     - role: virtualbox
