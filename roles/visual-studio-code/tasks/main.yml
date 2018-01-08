@@ -2,3 +2,6 @@
   homebrew_cask:
     name: visual-studio-code
     state: present
+
+- name: Install Microsoft Python extension
+  command: /usr/local/bin/code --install-extension roles/visual-studio-code/files/ms-python.python-0.9.1.vsix
