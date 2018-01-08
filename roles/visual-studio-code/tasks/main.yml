@@ -3,5 +3,11 @@
     name: visual-studio-code
     state: present
 
+- name: Check if Microsoft Python extension exists
+  command: /usr/local/bin/code --list-extensions
+  register: vsc_extensions
+  changed_when: false
+
 - name: Install Microsoft Python extension
   command: /usr/local/bin/code --install-extension roles/visual-studio-code/files/ms-python.python-0.9.1.vsix
+  when: vsc_extensions.stdout.find('ms-python.python') == -1
