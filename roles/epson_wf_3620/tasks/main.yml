@@ -1,0 +1,16 @@
+- name: Check if Epson Drivers and Utilities are installed
+  stat:
+    path: "{{ epson_wf_3620.installed }}"
+  register: epson_software
+
+- name: Attach Epson Drivers and Utilities Combo disk image
+  command: hdiutil attach {{ epson_wf_3620.disk_image }}
+  when: epson_software.stat.exists == false
+
+- name: Execute the installer for the Epson Drivers and Utilities
+  command: "{{ epson_wf_3620.installer }}"
+  when: epson_software.stat.exists == false
+
+- name: Detach Epson Drivers and Utilites Combo disk image
+  command: hdiutil detach {{ epson_wf_3620.mount_point }}
+  when: epson_software.stat.exists == false
