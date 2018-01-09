@@ -28,10 +28,9 @@
     /usr/bin/security find-internet-password
     -a {{ github.keychain.account }}
     -s {{ github.keychain.server }}
-  ignore_errors: yes
   register: result
+  ignore_errors: true
   changed_when: false
-  no_log: True
 
 - name: Add github entry to keychain
   command: >

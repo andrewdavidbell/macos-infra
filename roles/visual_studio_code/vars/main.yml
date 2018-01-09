@@ -1,0 +1,2 @@
+visual_studio_code:
+  python_extension_path: "roles/visual-studio-code/files/ms-python.python-0.9.1.vsix"

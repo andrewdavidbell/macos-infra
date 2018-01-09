@@ -9,5 +9,5 @@
   changed_when: false
 
 - name: Install Microsoft Python extension
-  command: /usr/local/bin/code --install-extension roles/visual-studio-code/files/ms-python.python-0.9.1.vsix
+  command: /usr/local/bin/code --install-extension {{ visual_studio_code.python_extension_path }}
   when: vsc_extensions.stdout.find('ms-python.python') == -1

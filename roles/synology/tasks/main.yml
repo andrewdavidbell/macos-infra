@@ -15,12 +15,12 @@
 
 - name: Attach Synology Note Station Disk Image
   command: hdiutil attach {{ synology.note_station_disk_image }}
-  when: note_station.stat.exists == False
+  when: note_station.stat.exists == false
 
 - name: Install Synology Note Station
   command: cp -a {{ synology.note_station_mounted_app }} {{ synology.note_station_installed_app }}
-  when: note_station.stat.exists == False
+  when: note_station.stat.exists == false
 
 - name: Detach Synology Note Station Disk Image
   command: hdiutil detach {{ synology.note_station_mount_point }}
-  when: note_station.stat.exists == False
+  when: note_station.stat.exists == false
