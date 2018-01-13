@@ -1,0 +1,35 @@
+# Top level playbook to automate configuration of macOS-based machine
+
+---
+- name: Provision macOS-based machine
+  hosts: macos
+
+  roles:
+    - role: macos_customisation
+
+    # macOS applications
+    - role: synology
+    - role: 1password
+    - role: thehitlist
+    - role: flux
+    - role: snitch
+    - role: chrome
+    - role: epson_wf_3620
+
+    # Work applications
+    - role: microsoft_office
+    - role: slack
+    - role: firefox
+    - role: hipchat
+    - role: discord
+
+    # Development
+    - role: bash
+    - role: github
+    - role: python
+    - role: visual_studio_code
+
+    # DevOps
+    - role: virtualbox
+    - role: hashicorp
+    - role: docker

@@ -15,6 +15,13 @@
     - role: snitch
     - role: chrome
     - role: epson_wf_3620
+    # TODO
+    # - role: dropbox
+    # - role: evernote
+    # - role: neooffice
+    # - role: handbrake
+    # - role: xld
+    # - role: heli_x
 
     # Development
     - role: bash
