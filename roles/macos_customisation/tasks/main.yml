@@ -2,7 +2,7 @@
   osx_defaults:
     domain: com.apple.AppleMultitouchTrackpad
     key: Clicking
-    type: boolean
+    type: integer
     value: 1
     state: present
 
@@ -10,7 +10,7 @@
   osx_defaults:
     domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
     key: Clicking
-    type: boolean
+    type: integer
     value: 1
     state: present
 
