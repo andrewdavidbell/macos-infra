@@ -11,3 +11,11 @@
 - name: Install Microsoft Python extension
   command: /usr/local/bin/code --install-extension {{ visual_studio_code.python_extension_path }}
   when: vsc_extensions.stdout.find('ms-python.python') == -1
+
+- name: Add Visual Studio Code User settings
+  copy:
+    src: settings.json
+    dest: "{{ ansible_user_dir }}/Library/Application Support/Code/User/settings.json"
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0644
