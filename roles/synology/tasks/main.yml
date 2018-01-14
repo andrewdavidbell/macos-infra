@@ -3,15 +3,24 @@
     name: caskroom/drivers
     state: present
 
-- name: Install Synology Cloud Station
+- name: Install Synology Drive
   homebrew_cask:
-    name: synology-cloud-station-drive
+    name: synology-drive
     state: present
 
 - name: Check if Synology Note Station is installed
   stat:
     path: "{{ synology.note_station_installed_app }}"
   register: note_station
+
+- name: Ensure User's Application directory exists
+  file:
+    path: "{{ ansible_user_dir }}/Applications"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0755
+  when: note_station.stat.exists == false
 
 - name: Attach Synology Note Station Disk Image
   command: hdiutil attach {{ synology.note_station_disk_image }}

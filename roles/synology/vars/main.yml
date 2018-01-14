@@ -1,6 +1,6 @@
 synology:
   note_station_app: "Synology Note Station.app"
-  note_station_installed_app: "{{ ansible_user_dir }}/Applications/Synology Note Station.app"
-  note_station_disk_image: "{{ ansible_user_dir }}/Library/Mobile Documents/com~apple~CloudDocs/Disk Images/synology-note-station-2.0.223-mac-x64.dmg"
-  note_station_mount_point: "/Volumes/Synology Note Station/"
-  note_station_mounted_app: "/Volumes/Synology Note Station/Synology Note Station.app"
+  note_station_installed_app: "{{ ansible_user_dir }}/Applications/Synology\ Note\ Station.app"
+  note_station_disk_image: "{{ ansible_user_dir }}/Library/Mobile\ Documents/com~apple~CloudDocs/Disk\ Images/synology-note-station-2.0.223-mac-x64.dmg"
+  note_station_mount_point: "/Volumes/Synology\ Note\ Station/"
+  note_station_mounted_app: "/Volumes/Synology\ Note\ Station/Synology\ Note\ Station.app"
