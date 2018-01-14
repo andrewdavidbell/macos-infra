@@ -25,28 +25,11 @@
     - { regexp: '^alias ll=',     line: 'alias ll="ls -lG"' }
     - { regexp: '^alias la=',     line: 'alias la="ls -laG"' }
     - { regexp: '^alias cd..=',   line: 'alias cd..="cd .."' }
-    - { regexp: '^alias mycode=', line: 'alias mycode="cd ~/Code"' }
-    - { regexp: '^alias mydata=', line: 'alias mydata="cd ~/Data"' }
+    - { regexp: '^alias dev=',    line: 'alias dev="cd ~/Development"' }
 
-- name: Create development code directory
+- name: Create development directory
   file:
-    path: "{{ ansible_user_dir }}/Code"
-    state: directory
-    owner: "{{ ansible_user_id }}"
-    group: staff
-    mode: 0755
-
-- name: Create development shell script directory
-  file:
-    path: "{{ ansible_user_dir }}/Code/shell"
-    state: directory
-    owner: "{{ ansible_user_id }}"
-    group: staff
-    mode: 0755
-
-- name: Create development data directory
-  file:
-    path: "{{ ansible_user_dir }}/Data"
+    path: "{{ ansible_user_dir }}/Development"
     state: directory
     owner: "{{ ansible_user_id }}"
     group: staff
