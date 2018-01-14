@@ -4,29 +4,39 @@
     name: python
     state: present
 
-# TODO use var for python paths
-
-- name: Install virtualenv for Python 2
+- name: Install packages for Python 2
   pip:
-    name: virtualenv
+    requirements: "{{ python.global_requirements_path }}"
     executable: /usr/local/bin/pip2
 
-- name: Install virtualenvwrapper for Python 2
-  pip:
-    name: virtualenvwrapper
-    executable: /usr/local/bin/pip2
-
-- name: Install autopep8 for Python 2
-  pip:
-    name: autopep8
-    executable: /usr/local/bin/pip2
-
-- name: Add alias for virtualenv for Python 2
+- name: Add alias for virtualenv using Python 2
   lineinfile:
     path: "{{ ansible_user_dir }}/.bashrc"
     regexp: '^alias venv2='
-    line: 'alias venv2="virtualenv --python /usr/local/bin/python2 --system-site-packages .env"'
+    line: 'alias venv2="virtualenv --python /usr/local/bin/python2 --system-site-packages .venv"'
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0644
     create: yes
+
+- name: Setup virtualenvwrapper for Python 2
+  lineinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc"
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0644
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    create: yes
+  with_items:
+    - { regexp: '^ ',
+           line: ' ' }
+    - { regexp: '^export VIRTUALENVWRAPPER_PYTHON=',
+           line: 'export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2' }
+    - { regexp: '^export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=',
+           line: "export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--system-site-packages'" }
+    - { regexp: '^source /usr/local/bin/virtualenvwrapper_lazy.sh',
+           line: 'source /usr/local/bin/virtualenvwrapper_lazy.sh' }
 
 
 # Python 3
@@ -35,33 +45,17 @@
     name: python3
     state: present
 
-- name: Install virtualenv for Python 3
+- name: Install packages for Python 3
   pip:
-    name: virtualenv
+    requirements: "{{ python.global_requirements_path }}"
     executable: /usr/local/bin/pip3
 
-- name: Install virtualenvwrapper for Python 3
-  pip:
-    name: virtualenvwrapper
-    executable: /usr/local/bin/pip3
-
-- name: Install pylint for Python 3
-  pip:
-    name: pylint
-    executable: /usr/local/bin/pip3
-
-- name: Add alias for virtualenv for Python 3
+- name: Add alias for virtualenv using Python 3
   lineinfile:
     path: "{{ ansible_user_dir }}/.bashrc"
     regexp: '^alias venv3='
-    line: 'alias venv3="virtualenv --python /usr/local/bin/python3 --system-site-packages .env"'
-    create: yes
-
-
-- name: Make directory for Python workspace
-  file:
-    path: "{{ ansible_user_dir }}/Code/python"
-    state: directory
+    line: 'alias venv3="/usr/local/bin/python3 -m venv --system-site-packages .venv"'
     owner: "{{ ansible_user_id }}"
     group: staff
-    mode: 0700
+    mode: 0644
+    create: yes

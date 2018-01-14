@@ -1,0 +1,2 @@
+python:
+  global_requirements_path: "{{ role_path }}/files/global_requirements.txt"
