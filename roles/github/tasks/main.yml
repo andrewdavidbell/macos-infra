@@ -39,6 +39,5 @@
     -s {{ github.keychain.server }}
     -w {{ github.keychain.password }}
     -r {{ github.keychain.protocol }}
-    -T {{ github.keychain.application }}
   when: result|failed
   no_log: true
