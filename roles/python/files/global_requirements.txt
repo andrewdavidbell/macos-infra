@@ -1,4 +1,5 @@
-autopep8
-pylint
 virtualenv
 virtualenvwrapper
+autopep8
+pylint
+mock

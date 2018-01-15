@@ -34,7 +34,7 @@
     - { regexp: '^export VIRTUALENVWRAPPER_PYTHON=',
            line: 'export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2' }
     - { regexp: '^export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=',
-           line: "export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--system-site-packages'" }
+           line: "export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python /usr/local/bin/python2 --system-site-packages'" }
     - { regexp: '^source /usr/local/bin/virtualenvwrapper_lazy.sh',
            line: 'source /usr/local/bin/virtualenvwrapper_lazy.sh' }
 
