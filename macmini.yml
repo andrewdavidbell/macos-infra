@@ -15,9 +15,9 @@
     - role: snitch
     - role: chrome
     - role: epson_wf_3620
+    - role: dropbox
+    - role: evernote
     # TODO
-    # - role: dropbox
-    # - role: evernote
     # - role: neooffice
     # - role: handbrake
     # - role: xld
@@ -34,3 +34,4 @@
     - role: virtualbox
     - role: hashicorp
     - role: docker
+    - role: awscli

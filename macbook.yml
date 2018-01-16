@@ -15,6 +15,8 @@
     - role: snitch
     - role: chrome
     - role: epson_wf_3620
+    - role: dropbox
+    - role: evernote
 
     # Work applications
     - role: microsoft_office
@@ -33,3 +35,4 @@
     - role: virtualbox
     - role: hashicorp
     - role: docker
+    - role: awscli

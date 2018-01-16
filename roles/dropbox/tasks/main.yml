@@ -1,0 +1,4 @@
+- name: Install Dropbox
+  homebrew_cask:
+    name: dropbox
+    state: present
