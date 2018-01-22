@@ -29,6 +29,7 @@
     - role: arduino
     - role: python
     - role: visual_studio_code
+    - role: iterm2
 
     # DevOps
     - role: virtualbox
