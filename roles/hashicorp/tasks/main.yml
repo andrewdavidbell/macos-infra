@@ -3,6 +3,15 @@
     name: vagrant
     state: present
 
+- name: Vagrant root privilege for NFS shared folders
+  copy:
+    src: vagrant_nfs
+    dest: /private/etc/sudoers.d/vagrant_nfs
+    owner: root
+    group: wheel
+    mode: 0440
+  become: true
+
 - name: Install Packer
   homebrew:
     name: packer
