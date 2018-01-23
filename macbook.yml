@@ -31,9 +31,8 @@
     - role: python
     - role: visual_studio_code
     - role: iterm2
-
-    # DevOps
     - role: virtualbox
     - role: hashicorp
     - role: docker
     - role: awscli
+    - role: jq
