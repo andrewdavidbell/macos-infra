@@ -1,5 +1,6 @@
 {
     "files.trimTrailingWhitespace": true,
     "editor.renderWhitespace": "all",
-    "git.confirmSync": false
+    "git.confirmSync": false,
+    "window.zoomLevel": 0
 }
