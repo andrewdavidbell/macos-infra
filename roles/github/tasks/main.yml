@@ -23,6 +23,22 @@
     value: "{{ github.user_email }}"
   no_log: true
 
+- name: Ensure .config/git directory exists
+  file:
+    path: "{{ ansible_user_dir }}/.config/git"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0755
+
+- name: Install ignore in global git configuration
+  copy:
+    src: ignore
+    dest: "{{ ansible_user_dir }}/.config/git/ignore"
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0644
+
 - name: Check for github entry in keychain
   command: >
     /usr/bin/security find-internet-password
