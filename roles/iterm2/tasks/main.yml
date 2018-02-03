@@ -2,3 +2,17 @@
   homebrew_cask:
     name: iterm2
     state: present
+
+- name: Fetch iTerm2 shell integration script
+  get_url:
+    url: https://iterm2.com/shell_integration/bash
+    dest: "{{ ansible_user_dir }}/.iterm2_shell_integration.bash"
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0755
+
+- name: Load iTerm2 shell integration script at login
+  lineinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    regexp: '^\[ -e ~/.iterm2_shell_integration.bash \]'
+    line: '[ -e ~/.iterm2_shell_integration.bash ] && . ~/.iterm2_shell_integration.bash'
