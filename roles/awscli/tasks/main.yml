@@ -1,3 +1,6 @@
+---
+# file: roles/awscli/tasks/main.yml
+
 - name: Install AWS CLI
   homebrew:
     name: awscli

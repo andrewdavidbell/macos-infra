@@ -1,3 +1,6 @@
+---
+# file: roles/snitch/tasks/main.yml
+
 - name: Install Little Snitch
   homebrew_cask:
     name: little-snitch

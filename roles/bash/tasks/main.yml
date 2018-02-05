@@ -1,3 +1,6 @@
+---
+# file: roles/bash/tasks/main.yml
+
 - name: Install ~/.bash_profile
   copy:
     src: bash_profile

@@ -1,3 +1,6 @@
+---
+# file: roles/microsoft_office/tasks/main.yml
+
 - name: Install Microsoft Office 2016
   homebrew_cask:
     name: microsoft-office

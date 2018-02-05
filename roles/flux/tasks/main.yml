@@ -1,3 +1,6 @@
+---
+# file: roles/flux/tasks/main.yml
+
 - name: Install Flux
   homebrew_cask:
     name: flux

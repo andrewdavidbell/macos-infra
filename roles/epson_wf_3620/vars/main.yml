@@ -1,3 +1,6 @@
+---
+# file: roles/epson_wf_3620/vars/main.yml
+
 epson_wf_3620:
   installed: "/Applications/Epson Software/"
   disk_image: "{{ ansible_user_dir }}/Library/Mobile\ Documents/com~apple~CloudDocs/Disk\ Images/epson18532.dmg"

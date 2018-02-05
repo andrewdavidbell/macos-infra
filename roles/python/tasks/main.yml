@@ -1,3 +1,6 @@
+---
+# file: roles/python/tasks/main.yml
+
 # Python 2 (already installed because it's an Ansible dependency)
 - name: Install Python 2
   homebrew:

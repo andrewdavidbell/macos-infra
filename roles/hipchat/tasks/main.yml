@@ -1,3 +1,6 @@
+---
+# file: roles/hipchat/tasks/main.yml
+
 - name: Install Hipchat
   homebrew_cask:
     name: hipchat

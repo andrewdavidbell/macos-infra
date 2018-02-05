@@ -1,3 +1,6 @@
+---
+# file: roles/iterm2/tasks/main.yml
+
 - name: Install iTerm2
   homebrew_cask:
     name: iterm2

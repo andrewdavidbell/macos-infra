@@ -1,3 +1,6 @@
+---
+# file: roles/1password/tasks/main.yml
+
 - name: Install 1Password
   homebrew_cask:
     name: 1password

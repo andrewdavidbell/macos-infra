@@ -1,3 +1,6 @@
+---
+# file: roles/synology/tasks/main.yml
+
 - name: Install Tap for Synology applications
   homebrew_tap:
     name: caskroom/drivers

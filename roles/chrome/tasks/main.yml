@@ -1,3 +1,6 @@
+---
+# file: roles/chrome/tasks/main.yml
+
 - name: Install Chrome
   homebrew_cask:
     name: google-chrome

@@ -1,3 +1,6 @@
+---
+# file: roles/dropbox/tasks/main.yml
+
 - name: Install Dropbox
   homebrew_cask:
     name: dropbox

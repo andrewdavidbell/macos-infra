@@ -1,3 +1,6 @@
+---
+# file: roles/epson_wf_3620/tasks/main.yml
+
 - name: Check if Epson Drivers and Utilities are installed
   stat:
     path: "{{ epson_wf_3620.installed }}"

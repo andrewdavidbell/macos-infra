@@ -1,3 +1,6 @@
+---
+# file: roles/arduino/tasks/main.yml
+
 - name: Install Arduino
   homebrew_cask:
     name: arduino

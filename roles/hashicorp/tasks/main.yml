@@ -1,3 +1,6 @@
+---
+# file: roles/vagrant/tasks/main.yml
+
 - name: Install Vagrant
   homebrew_cask:
     name: vagrant

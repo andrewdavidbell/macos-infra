@@ -1,3 +1,6 @@
+---
+# file: roles/synology/vars/main.yml
+
 synology:
   note_station_app: "Synology Note Station.app"
   note_station_installed_app: "{{ ansible_user_dir }}/Applications/Synology\ Note\ Station.app"

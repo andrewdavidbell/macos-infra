@@ -1,3 +1,6 @@
+---
+# file: roles/thehitlist/tasks/main.yml
+
 - name: Install The Hit List
   homebrew_cask:
     name: the-hit-list
