@@ -1,39 +1,39 @@
+---
 # Top level playbook to automate configuration of macOS-based machine
 
----
 - name: Provision macOS-based machine
   hosts: macos
 
   roles:
-    - role: macos_customisation
+    - { role: macos_customisation, tags: macos_customisation }
 
     # macOS applications
-    - role: synology
-    - role: 1password
-    - role: thehitlist
-    - role: flux
-    - role: snitch
-    - role: chrome
-    - role: epson_wf_3620
-    - role: dropbox
-    - role: evernote
+    - { role: synology, tags: synology }
+    - { role: 1password, tags: 1password }
+    - { role: thehitlist, tags: thehitlist }
+    - { role: flux, tags: flux }
+    - { role: snitch, tags: snitch }
+    - { role: chrome, tags: chrome }
+    - { role: epson_wf_3620, tags: epson_wf_3620 }
+    - { role: dropbox, tags: dropbox }
+    - { role: evernote, tags: evernote }
 
     # Work applications
-    - role: microsoft_office
-    - role: slack
-    - role: firefox
-    - role: hipchat
-    - role: discord
+    - { role: microsoft_office, tags: microsoft_office }
+    - { role: slack, tags: slack }
+    - { role: firefox, tags: firefox }
+    - { role: hipchat, tags: hipchat }
+    - { role: discord, tags: discord }
 
     # Development
-    - role: bash
-    - role: github
-    - role: python
-    - role: visual_studio_code
-    - role: iterm2
-    - role: virtualbox
-    - role: hashicorp
-    - role: docker
-    - role: awscli
-    - role: jq
-    - role: qlmarkdown
+    - { role: bash, tags: bash }
+    - { role: github, tags: github }
+    - { role: python, tags: python }
+    - { role: visual_studio_code, tags: visual_studio_code }
+    - { role: iterm2, tags: iterm2 }
+    - { role: virtualbox, tags: virtualbox }
+    - { role: hashicorp, tags: hashicorp }
+    - { role: docker, tags: docker }
+    - { role: awscli, tags: awscli }
+    - { role: jq, tags: jq }
+    - { role: qlmarkdown, tags: qlmarkdown }
