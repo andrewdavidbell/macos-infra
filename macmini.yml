@@ -35,3 +35,4 @@
     - role: docker
     - role: awscli
     - role: jq
+    - role: qlmarkdown

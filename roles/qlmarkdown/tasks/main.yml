@@ -1,0 +1,4 @@
+- name: Install QLMarkdown
+  homebrew_cask:
+    name: qlmarkdown
+    state: present
