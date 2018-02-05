@@ -3,13 +3,24 @@
     name: iterm2
     state: present
 
+- name: Install wget as an alternative to Ansible's get_url module
+  homebrew:
+    name: wget
+    state: present
+
 - name: Fetch iTerm2 shell integration script
-  get_url:
-    url: https://iterm2.com/shell_integration/bash
-    dest: "{{ ansible_user_dir }}/.iterm2_shell_integration.bash"
-    owner: "{{ ansible_user_id }}"
-    group: staff
-    mode: 0755
+#  get_url:
+#    url: https://iterm2.com/shell_integration/bash
+#    dest: "{{ ansible_user_dir }}/.iterm2_shell_integration.bash"
+#    owner: "{{ ansible_user_id }}"
+#    group: staff
+#    mode: 0755
+#    validate_certs: no
+#
+#  Problems with openssl failing to validate certs
+  shell: >
+    wget --quiet https://iterm2.com/shell_integration/bash
+    -O {{ ansible_user_dir }}/.iterm2_shell_integration.bash
 
 - name: Load iTerm2 shell integration script at login
   lineinfile:
