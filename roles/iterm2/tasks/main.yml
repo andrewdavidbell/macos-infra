@@ -8,6 +8,11 @@
     name: wget
     state: present
 
+- name: Check if iTerm2 shell integration script is installed
+  stat:
+    path: "{{ ansible_user_dir }}/.iterm2_shell_integration.bash"
+  register: iterm2_bash_script
+
 - name: Fetch iTerm2 shell integration script
 #  get_url:
 #    url: https://iterm2.com/shell_integration/bash
@@ -18,9 +23,11 @@
 #    validate_certs: no
 #
 #  Problems with openssl failing to validate certs
+#  https://github.com/ansible/ansible/issues/33417
   shell: >
     wget --quiet https://iterm2.com/shell_integration/bash
     -O {{ ansible_user_dir }}/.iterm2_shell_integration.bash
+  when: iterm2_bash_script.stat.exists == false
 
 - name: Load iTerm2 shell integration script at login
   lineinfile:
