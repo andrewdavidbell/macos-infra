@@ -5,7 +5,7 @@
   hosts: macos
 
   roles:
-    - { role: macos_customisation
+    - { role: macos_customisation, tags: macos_customisation }
 
     # macOS applications
     - { role: synology, tags: synology }
