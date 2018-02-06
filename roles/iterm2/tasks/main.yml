@@ -6,11 +6,17 @@
     name: iterm2
     state: present
 
+#
+#  get_url is failing to validate certs and even with validation switched off.
+#  Use wget instead for now.
+#  https://github.com/ansible/ansible/issues/33417
+#
 - name: Install wget as an alternative to Ansible's get_url module
   homebrew:
     name: wget
     state: present
 
+# Note: this task wouldn't be required when using get_url
 - name: Check if iTerm2 shell integration script is installed
   stat:
     path: "{{ ansible_user_dir }}/.iterm2_shell_integration.bash"
@@ -25,8 +31,6 @@
 #    mode: 0755
 #    validate_certs: no
 #
-#  Problems with openssl failing to validate certs
-#  https://github.com/ansible/ansible/issues/33417
   shell: >
     wget --quiet https://iterm2.com/shell_integration/bash
     -O {{ ansible_user_dir }}/.iterm2_shell_integration.bash
