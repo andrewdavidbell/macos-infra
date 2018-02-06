@@ -1,0 +1,20 @@
+---
+# file: roles/ssh/tasks/main.yml
+
+- name: Ensure {{ ansible_user_dir }}/.ssh directory exists
+  file:
+    path: "{{ ansible_user_dir }}/.ssh"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0755
+
+# These fragments are ignored by git to prevent leaking of secrets into source
+- name: Install SSH config file from fragments
+  assemble:
+    src: "{{ role_path }}/files/config.d"
+    dest: "{{ ansible_user_dir }}/.ssh/config"
+    ignore_hidden: yes
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0600
