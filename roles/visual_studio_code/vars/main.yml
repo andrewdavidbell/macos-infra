@@ -1,5 +1,0 @@
----
-# file: roles/visual_studio_code/vars/main.yml
-
-visual_studio_code:
-  python_extension_path: "{{ role_path }}/files/ms-python.python-0.9.1.vsix"
