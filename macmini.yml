@@ -26,7 +26,7 @@
     # Development
     - { role: bash, tags: bash }
     - { role: ssh, tags: ssh }
-    - { role: github, tags: github }
+    - { role: git, tags: git }
     - { role: arduino, tags: arduino }
     - { role: python, tags: python }
     - { role: visual_studio_code, tags: visual_studio_code }
