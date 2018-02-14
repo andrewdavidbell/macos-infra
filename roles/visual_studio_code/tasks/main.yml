@@ -13,7 +13,9 @@
 
 - name: Install {{ item.name }} extension
   command: /usr/local/bin/code --install-extension {{ role_path }}/files/{{ item.name }}-{{ item.version }}.vsix
-  when: vsc_extensions.stdout.find('{{ item.name }}') == -1
+  when:
+    - not ansible_check_mode
+    - vsc_extensions.stdout.find(item.name) == -1
   with_items:
     - { name: 'ms-python.python', version: '0.9.1' }
     - { name: 'mauve.terraform', version: '0.0.20' }

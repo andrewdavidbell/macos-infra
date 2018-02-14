@@ -5,7 +5,7 @@ Ansible automation to configure my macOS-based machines for software development
 Change directory to the location where you want the Ansible automation to be installed. Then issue the following command:
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infra/master/install)"
 
-## Applications to be configured
+## Applications to be installed & configured
 ### macOS Apps
 * 1Password
 * The Hit List
@@ -16,26 +16,24 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infr
 * Synology Cloud Station
 * Synology Note Station
 * Google Chrome
-
-#### macOS Apps TODO
 * Dropbox
 * Evernote
 * Quick Look Markdown viewer
 * Microsoft Office
-* Things
 * Firefox
-* NeoOffice
 * HipChat
 * Slack
+* Discord
+* Epson Printer Utilities
+
+#### macOS Apps TODO
+* NeoOffice
 * VLC
 * Handbrake
-* Discord
 * Android File Transfer
 * SD Card Formatter
-* Epson Printer Utilities
-* Heli-X
 * XLD
-* Microsoft Remote Desktop
+* Heli-X
 
 ### Shell environment (SSH keys, dot configuration files)
 * EC2
@@ -51,7 +49,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infr
 
 ### IDEs
 * Microsoft Visual Studio Code
-* Atom
 
 ### Virtualisation/DevOps
 * Ansible (installed as part of bootstrap)
@@ -64,9 +61,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infr
 * Docker for Mac
 
 ### Ruby
-* Chruby
+* chruby
 * ruby-install
-* ruby work environment under ~/Code
+* ruby work environment under ~/Development
 
 ### Python
 * ipython
@@ -75,7 +72,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/andrewdavidbell/macos-infr
 * virtualenvwrapper
 * autopep8
 * pylint
-* Python work environment under ~/Code
+* Python work environment under ~/Development
 
 ### Java
 * Maven
