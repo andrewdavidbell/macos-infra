@@ -2,5 +2,6 @@
     "files.trimTrailingWhitespace": true,
     "editor.renderWhitespace": "all",
     "git.confirmSync": false,
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "python.linting.pylintUseMinimalCheckers": false
 }
