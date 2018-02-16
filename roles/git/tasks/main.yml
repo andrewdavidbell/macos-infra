@@ -17,7 +17,7 @@
   git_config:
     name: user.name
     scope: global
-    value: "Andrew Bell"
+    value: Andrew Bell
 
 - name: Set email in global git configuration
   git_config:
@@ -25,6 +25,12 @@
     scope: global
     value: "{{ github.user_email }}"
   no_log: true
+
+- name: Set page in global git configuration
+  git_config:
+    name: core.pager
+    scope: global
+    value: less -r
 
 - name: Ensure .config/git directory exists
   file:
