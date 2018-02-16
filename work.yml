@@ -1,0 +1,11 @@
+---
+
+- name: Provision macOS applications used at work
+  hosts: work
+
+  roles:
+    - { role: microsoft_office, tags: microsoft_office }
+    - { role: slack, tags: slack }
+    - { role: firefox, tags: firefox }
+    - { role: hipchat, tags: hipchat }
+    - { role: discord, tags: discord }

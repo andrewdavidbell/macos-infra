@@ -1,0 +1,12 @@
+---
+
+- name: Provision macOS applications used at home
+  hosts: home
+
+  roles:
+    - { role: arduino, tags: arduino }
+    # TODO
+    # - { role: neooffice, tags: neooffice }
+    # - { role: handbrake, tags: handbrake }
+    # - { role: xld, tags: xld }
+    # - { role: heli_x, tags: heli_x }

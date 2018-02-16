@@ -1,0 +1,16 @@
+---
+
+- name: Provision 'base' macOS applications
+  hosts: base
+
+  roles:
+    - { role: macos_customisation, tags: macos_customisation }
+    - { role: synology, tags: synology }
+    - { role: 1password, tags: 1password }
+    - { role: thehitlist, tags: thehitlist }
+    - { role: flux, tags: flux }
+    - { role: snitch, tags: snitch }
+    - { role: chrome, tags: chrome }
+    - { role: epson_wf_3620, tags: epson_wf_3620 }
+    - { role: dropbox, tags: dropbox }
+    - { role: evernote, tags: evernote }

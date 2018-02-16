@@ -49,21 +49,6 @@ EOF
     fi
 }
 
-execute_playbook() {
-    local HW_MODEL=$(/usr/sbin/sysctl hw.model)
-
-    case $HW_MODEL in
-      *Macmini*)
-        /usr/local/bin/ansible-playbook -K macmini.yml
-        ;;
-      *MacBookPro*)
-        /usr/local/bin/ansible-playbook -K macbook.yml
-        ;;
-      *)
-        echo "Only Macmini and MacBook Pro hardware supported"
-    esac
-}
-
 main() {
     install_homebrew
     install_ansible
@@ -72,7 +57,7 @@ main() {
     cd ./macos-infra
 
     install_ansible_vault_password
-    execute_playbook
+    /usr/local/bin/ansible-playbook -K site.yml
 }
 
 main

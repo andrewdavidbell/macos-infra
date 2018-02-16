@@ -1,0 +1,18 @@
+---
+
+- name: Provision macOS applications used for development
+  hosts: development
+
+  roles:
+    - { role: bash, tags: bash }
+    - { role: ssh, tags: ssh }
+    - { role: git, tags: git }
+    - { role: python, tags: python }
+    - { role: visual_studio_code, tags: visual_studio_code }
+    - { role: iterm2, tags: iterm2 }
+    - { role: virtualbox, tags: virtualbox }
+    - { role: hashicorp, tags: hashicorp }
+    - { role: docker, tags: docker }
+    - { role: awscli, tags: awscli }
+    - { role: jq, tags: jq }
+    - { role: qlmarkdown, tags: qlmarkdown }

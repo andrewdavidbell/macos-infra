@@ -1,4 +1,13 @@
 localhost ansible_connection=local
 
-[macos]
+[base]
+localhost
+
+[home]
+localhost
+
+[work]
+localhost
+
+[development]
 localhost
