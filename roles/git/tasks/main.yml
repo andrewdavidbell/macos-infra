@@ -23,8 +23,7 @@
   git_config:
     name: user.email
     scope: global
-    value: "{{ github.user_email }}"
-  no_log: true
+    value: "{{ github.noreply_user_email }}"
 
 - name: Set page in global git configuration
   git_config:
