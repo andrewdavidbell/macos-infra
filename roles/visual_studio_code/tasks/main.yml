@@ -19,6 +19,7 @@
   with_items:
     - { name: 'ms-python.python', version: '0.9.1' }
     - { name: 'mauve.terraform', version: '0.0.20' }
+    - { name: 'jpogran.puppet-vscode', version: '0.9.0' }
 
 - name: Add Visual Studio Code User settings
   copy:
