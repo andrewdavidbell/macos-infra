@@ -3,5 +3,6 @@
     "editor.renderWhitespace": "all",
     "git.confirmSync": false,
     "window.zoomLevel": 0,
-    "python.linting.pylintUseMinimalCheckers": false
+    "python.linting.pylintUseMinimalCheckers": false,
+    "python.venvPath": "{{ ansible_user_dir }}/.virtualenvs/"
 }

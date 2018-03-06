@@ -23,8 +23,8 @@
     - { name: 'eamodio.gitlens', version: '8.0.2' }
 
 - name: Add Visual Studio Code User settings
-  copy:
-    src: settings.json
+  template:
+    src: templates/settings.json
     dest: "{{ ansible_user_dir }}/Library/Application Support/Code/User/settings.json"
     owner: "{{ ansible_user_id }}"
     group: staff
