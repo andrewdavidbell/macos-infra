@@ -4,13 +4,13 @@
 # Python 2 (already installed because it's an Ansible dependency)
 - name: Install Python 2
   homebrew:
-    name: python
+    name: python@2
     state: present
 
 - name: Install packages for Python 2
   pip:
     name: "{{ item.name }}"
-    executable: /usr/local/bin/pip2
+    executable: /usr/local/opt/python2/bin/pip2
   with_items:
     - { name: virtualenv }
     - { name: virtualenvwrapper }
@@ -22,7 +22,7 @@
   lineinfile:
     path: "{{ ansible_user_dir }}/.bashrc"
     regexp: '^alias venv2='
-    line: 'alias venv2="virtualenv --python /usr/local/bin/python2 --system-site-packages .venv"'
+    line: 'alias venv2="virtualenv --python /usr/local/opt/python2/bin/python2 --system-site-packages .venv"'
     owner: "{{ ansible_user_id }}"
     group: staff
     mode: 0644
@@ -41,7 +41,7 @@
     - { regexp: '^ ',
            line: ' ' }
     - { regexp: '^export VIRTUALENVWRAPPER_PYTHON=',
-           line: 'export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2' }
+           line: 'export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python2/bin/python2' }
     - { regexp: '^export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=',
            line: "export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python /usr/local/bin/python2 --system-site-packages'" }
     - { regexp: '^source /usr/local/bin/virtualenvwrapper_lazy.sh',
@@ -51,13 +51,13 @@
 # Python 3
 - name: Install Python 3
   homebrew:
-    name: python3
+    name: python
     state: present
 
 - name: Install packages for Python 3
   pip:
     name: "{{ item.name }}"
-    executable: /usr/local/bin/pip3
+    executable: /usr/local/bin/pip
   with_items:
     - { name: virtualenv }
     - { name: virtualenvwrapper }
@@ -68,8 +68,8 @@
 - name: Add alias for virtualenv using Python 3
   lineinfile:
     path: "{{ ansible_user_dir }}/.bashrc"
-    regexp: '^alias venv3='
-    line: 'alias venv3="/usr/local/bin/python3 -m venv --system-site-packages .venv"'
+    regexp: '^alias venv='
+    line: 'alias venv="/usr/local/bin/python -m venv --system-site-packages .venv"'
     owner: "{{ ansible_user_id }}"
     group: staff
     mode: 0644
