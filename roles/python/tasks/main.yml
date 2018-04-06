@@ -17,6 +17,7 @@
     - { name: autopep8 }
     - { name: pylint }
     - { name: mock }
+    - { name: rope }
 
 - name: Add alias for virtualenv using Python 2
   lineinfile:
@@ -64,6 +65,7 @@
     - { name: autopep8 }
     - { name: pylint }
     - { name: mock }
+    - { name: rope }
 
 - name: Add alias for virtualenv using Python 3
   lineinfile:
