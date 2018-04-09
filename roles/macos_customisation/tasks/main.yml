@@ -1,6 +1,64 @@
 ---
 # file: roles/macos_customisation/tasks/main.yml
 
+###############################################################################
+# Language & Region                                                           #
+###############################################################################
+
+- name: Set Preferred language
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleLanguages
+    type: array
+    value:
+      - en-AU
+    state: present
+
+- name: Set Region
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleLocale
+    type: string
+    value: en_AU
+    state: present
+
+###############################################################################
+# Date & Time                                                                 #
+###############################################################################
+
+- name: Set Time Zone
+  command: systemsetup -settimezone "Australia/Melbourne"
+  become: true
+  changed_when: false
+
+- name: Set Clock to be digital
+  osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: IsAnalog
+    type: boolean
+    value: false
+    state: present
+
+- name: Flash the time separators
+  osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: FlashDateSeparators
+    type: boolean
+    value: false
+    state: present
+
+- name: Set Clock format
+  osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: DateFormat
+    type: string
+    value: "EEE HH:mm"
+    state: present
+
+###############################################################################
+# Trackpad                                                                    #
+###############################################################################
+
 - name: Enable 'Tap to click' trackpad preference
   osx_defaults:
     domain: com.apple.AppleMultitouchTrackpad
@@ -30,7 +88,7 @@
     domain: com.apple.AppleMultitouchTrackpad
     key: TrackpadRightClick
     type: boolean
-    value: 1
+    value: true
     state: present
 
 - name: Enable 'Secondary click' trackpad driver preferences
@@ -38,7 +96,7 @@
     domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
     key: TrackpadRightClick
     type: boolean
-    value: 1
+    value: true
     state: present
 
 - name: Enable 'Secondary click' in Trackpad preference panel
@@ -46,7 +104,7 @@
     host: currentHost
     key: com.apple.trackpad.enableSecondaryClick
     type: boolean
-    value: 1
+    value: true
     state: present
 
 - name: Show battery percentage
@@ -57,28 +115,4 @@
     value: "YES"
     state: present
   when: ansible_model == "MacBookPro11,5"
-
-- name: Set Clock to be digital
-  osx_defaults:
-    domain: com.apple.menuextra.clock
-    key: IsAnalog
-    type: boolean
-    value: 0
-    state: present
-
-- name: Set Clock format
-  osx_defaults:
-    domain: com.apple.menuextra.clock
-    key: DateFormat
-    type: string
-    value: "EEE HH:mm"
-    state: present
-
-- name: Flash the time separators
-  osx_defaults:
-    domain: com.apple.menuextra.clock
-    key: FlashDateSeparators
-    type: boolean
-    value: 1
-    state: present
 
