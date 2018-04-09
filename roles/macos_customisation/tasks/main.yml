@@ -116,3 +116,55 @@
     state: present
   when: ansible_model == "MacBookPro11,5"
 
+###############################################################################
+# Safari                                                                      #
+###############################################################################
+
+- name: Open with all windows from last session
+  osx_defaults:
+    domain: com.apple.Safari
+    key: AlwaysRestoreSessionAtLaunch
+    type: boolean
+    value: true
+    state: present
+
+- name: Ask websites not to track me
+  osx_defaults:
+    domain: com.apple.Safari
+    key: SendDoNotTrackHTTPHeader
+    type: boolean
+    value: true
+    state: present
+
+- name: Disable AutoFill Contacts
+  osx_defaults:
+    domain: com.apple.Safari
+    key: AutoFillFromAddressBook
+    type: boolean
+    value: false
+    state: present
+
+- name: Disable AutoFill Passwords
+  osx_defaults:
+    domain: com.apple.Safari
+    key: AutoFillPasswords
+    type: boolean
+    value: false
+    state: present
+
+- name: Disable AutoFill Credit cards
+  osx_defaults:
+    domain: com.apple.Safari
+    key: AutoFillCreditCardData
+    type: boolean
+    value: false
+    state: present
+
+- name: Disable AutoFill Other forms
+  osx_defaults:
+    domain: com.apple.Safari
+    key: AutoFillMiscellaneousForms
+    type: boolean
+    value: false
+    state: present
+
