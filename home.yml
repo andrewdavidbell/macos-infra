@@ -4,6 +4,9 @@
   hosts: home
 
   roles:
+    - { role: epson_wf_3620, tags: epson_wf_3620 }
+    - { role: dropbox, tags: dropbox }
+    - { role: evernote, tags: evernote }
     - { role: arduino, tags: arduino }
     # TODO
     # - { role: neooffice, tags: neooffice }

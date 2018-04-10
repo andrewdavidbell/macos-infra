@@ -11,6 +11,3 @@
     - { role: flux, tags: flux }
     - { role: snitch, tags: snitch }
     - { role: chrome, tags: chrome }
-    - { role: epson_wf_3620, tags: epson_wf_3620 }
-    - { role: dropbox, tags: dropbox }
-    - { role: evernote, tags: evernote }
