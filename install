@@ -57,7 +57,9 @@ main() {
     cd ./macos-infra
 
     install_ansible_vault_password
-    /usr/local/bin/ansible-playbook -K site.yml
+    echo Copy sensitive data into staging area
+    echo Then run:
+    echo /usr/local/bin/ansible-playbook -K site.yml
 }
 
 main
