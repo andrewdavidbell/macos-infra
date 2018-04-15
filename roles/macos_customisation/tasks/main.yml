@@ -2,6 +2,18 @@
 # file: roles/macos_customisation/tasks/main.yml
 
 ###############################################################################
+# Desktop & Screen Saver                                                      #
+###############################################################################
+
+- name: Enable Screen Saver and Start after 5 Minutes
+  osx_defaults:
+    host: currentHost
+    domain: com.apple.screensaver
+    key: idleTime
+    type: int
+    value: 300
+
+###############################################################################
 # Language & Region                                                           #
 ###############################################################################
 
@@ -23,37 +35,69 @@
     state: present
 
 ###############################################################################
-# Date & Time                                                                 #
+# Security & Privacy                                                          #
 ###############################################################################
 
-- name: Set Time Zone
-  command: systemsetup -settimezone "Australia/Melbourne"
+- name: Require password after sleep or screen saver begins
+  osx_defaults:
+    domain: com.apple.screensaver
+    key: askForPassword
+    type: int
+    value: 1
+    state: present
+
+- name: Password grace period of 5 seconds
+  osx_defaults:
+    domain: com.apple.screensaver
+    key: askForPasswordDelay
+    type: float
+    value: 5
+    state: present
+
+- name: Turn on application level firewall and block all incoming connections
+  osx_defaults:
+    domain: /Library/Preferences/com.apple.alf
+    key: globalstate
+    type: int
+    value: 2
+    state: present
   become: true
+
+- name: Check if administrator password is required to access system-wide preferences
+  shell: |
+    /usr/bin/security authorizationdb read system.preferences > /tmp/system.preferences.plist
+    /usr/libexec/PlistBuddy -c "Print :shared" /tmp/system.preferences.plist
+  register: shared
   changed_when: false
 
-- name: Set Clock to be digital
+- name: Require an administrator password to access system-wide preferences
+  shell: |
+    /usr/bin/security authorizationdb write system.preferences < /tmp/system.preferences.plist
+    rm /tmp/system.preferences.plist
+  become: true
+  when: shared.stdout != "false"
+
+- name: Disable remote control infrared receiver
   osx_defaults:
-    domain: com.apple.menuextra.clock
-    key: IsAnalog
+    domain: /Library/Preferences/com.apple.driver.AppleIRController
+    key: DeviceEnabled
     type: boolean
     value: false
     state: present
+  become: true
 
-- name: Flash the time separators
-  osx_defaults:
-    domain: com.apple.menuextra.clock
-    key: FlashDateSeparators
-    type: boolean
-    value: false
-    state: present
+###############################################################################
+# Energy Saver                                                                #
+###############################################################################
 
-- name: Set Clock format
+- name: Show battery percentage
   osx_defaults:
-    domain: com.apple.menuextra.clock
-    key: DateFormat
+    domain: com.apple.menuextra.battery
+    key: ShowPercent
     type: string
-    value: "EEE HH:mm"
+    value: YES
     state: present
+  when: ansible_model == "MacBookPro11,5"
 
 ###############################################################################
 # Trackpad                                                                    #
@@ -78,6 +122,7 @@
 - name: Enable 'Tap to click' in Trackpad preferences panel
   osx_defaults:
     host: currentHost
+    domain: NSGlobalDomain
     key: com.apple.mouse.tapBehavior
     type: integer
     value: 1
@@ -102,19 +147,81 @@
 - name: Enable 'Secondary click' in Trackpad preference panel
   osx_defaults:
     host: currentHost
+    domain: NSGlobalDomain
     key: com.apple.trackpad.enableSecondaryClick
     type: boolean
     value: true
     state: present
 
-- name: Show battery percentage
+###############################################################################
+# Users & Groups                                                              #
+###############################################################################
+
+- name: Disable Guest user account
   osx_defaults:
-    domain: com.apple.menuextra.battery
-    key: ShowPercent
-    type: string
-    value: "YES"
+    domain: /Library/Preferences/com.apple.loginwindow
+    key: GuestEnabled
+    type: boolean
+    value: false
     state: present
-  when: ansible_model == "MacBookPro11,5"
+  become: true
+
+- name: Disable Guest access to shared folders (AppleFileServer)
+  osx_defaults:
+    domain: /Library/Preferences/com.apple.AppleFileServer
+    key: guestAccess
+    type: boolean
+    value: false
+    state: present
+  become: true
+
+- name: Disable Guest access to shared folders (SMB)
+  osx_defaults:
+    domain: /Library/Preferences/SystemConfiguration/com.apple.smb.server
+    key: AllowGuestAccess
+    type: boolean
+    value: false
+    state: present
+  become: true
+
+###############################################################################
+# Date & Time                                                                 #
+###############################################################################
+
+- name: Check Time Zone
+  command: systemsetup -gettimezone
+  become: true
+  register: tz
+  changed_when: false
+
+- name: Set Time Zone
+  command: systemsetup -settimezone Australia/Melbourne
+  become: true
+  when: 'tz.stdout != "Time Zone: Australia/Melbourne"'
+
+- name: Set Clock to be digital
+  osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: IsAnalog
+    type: boolean
+    value: false
+    state: present
+
+- name: Flash the time separators
+  osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: FlashDateSeparators
+    type: boolean
+    value: true
+    state: present
+
+- name: Set Clock format to EEE HH:mm
+  osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: DateFormat
+    type: string
+    value: "EEE HH:mm"
+    state: present
 
 ###############################################################################
 # Safari                                                                      #
@@ -168,3 +275,10 @@
     value: false
     state: present
 
+- name: Show Safari status bar
+  osx_defaults:
+    domain: com.apple.Safari
+    key: ShowStatusBar
+    type: boolean
+    value: true
+    state: present
