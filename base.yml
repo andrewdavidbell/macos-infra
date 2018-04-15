@@ -4,7 +4,7 @@
   hosts: base
 
   roles:
-    - { role: macos_customisation, tags: macos_customisation }
+    - { role: system_preferences, tags: system_preferences }
     - { role: synology, tags: synology }
     - { role: 1password, tags: 1password }
     - { role: thehitlist, tags: thehitlist }

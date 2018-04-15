@@ -1,5 +1,5 @@
 ---
-# file: roles/macos_customisation/tasks/main.yml
+# file: roles/system_preferences/tasks/main.yml
 
 ###############################################################################
 # Desktop & Screen Saver                                                      #
