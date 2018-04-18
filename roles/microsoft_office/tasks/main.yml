@@ -5,3 +5,4 @@
   homebrew_cask:
     name: microsoft-office
     state: present
+  become: true
