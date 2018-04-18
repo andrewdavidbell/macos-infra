@@ -4,9 +4,9 @@
 - import_playbook: base.yml
 
 - import_playbook: home.yml
-  when: ansible_model == "Macmini6,2"
+  when: '"Macmini" in ansible_model'
 
 - import_playbook: work.yml
-  when: ansible_model == "MacBookPro11,5"
+  when: '"MacBookPro" in ansible_model'
 
 - import_playbook: development.yml

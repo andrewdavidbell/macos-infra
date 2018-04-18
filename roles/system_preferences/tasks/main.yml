@@ -17,14 +17,14 @@
 # Language & Region                                                           #
 ###############################################################################
 
-- name: Set Preferred language
-  osx_defaults:
-    domain: NSGlobalDomain
-    key: AppleLanguages
-    type: array
-    value:
-      - en-AU
-    state: present
+#- name: Set Preferred language
+#  osx_defaults:
+#    domain: NSGlobalDomain
+#    key: AppleLanguages
+#    type: array
+#    value:
+#      - en-AU
+#    state: present
 
 - name: Set Region
   osx_defaults:
@@ -72,19 +72,20 @@
 
 - name: Require an administrator password to access system-wide preferences
   shell: |
+    /usr/libexec/PlistBuddy -c "Set :shared false" /tmp/system.preferences.plist
     /usr/bin/security authorizationdb write system.preferences < /tmp/system.preferences.plist
     rm /tmp/system.preferences.plist
   become: true
   when: shared.stdout != "false"
 
-- name: Disable remote control infrared receiver
-  osx_defaults:
-    domain: /Library/Preferences/com.apple.driver.AppleIRController
-    key: DeviceEnabled
-    type: boolean
-    value: false
-    state: present
-  become: true
+#- name: Disable remote control infrared receiver
+#  osx_defaults:
+#    domain: /Library/Preferences/com.apple.driver.AppleIRController
+#    key: DeviceEnabled
+#    type: boolean
+#    value: false
+#    state: present
+#  become: true
 
 ###############################################################################
 # Energy Saver                                                                #
@@ -97,7 +98,7 @@
     type: string
     value: YES
     state: present
-  when: ansible_model == "MacBookPro11,5"
+  when: '"MacBookPro" in ansible_model'
 
 ###############################################################################
 # Trackpad                                                                    #
@@ -166,23 +167,23 @@
     state: present
   become: true
 
-- name: Disable Guest access to shared folders (AppleFileServer)
-  osx_defaults:
-    domain: /Library/Preferences/com.apple.AppleFileServer
-    key: guestAccess
-    type: boolean
-    value: false
-    state: present
-  become: true
+#- name: Disable Guest access to shared folders (AppleFileServer)
+#  osx_defaults:
+#    domain: /Library/Preferences/com.apple.AppleFileServer
+#    key: guestAccess
+#    type: boolean
+#    value: false
+#    state: present
+#  become: true
 
-- name: Disable Guest access to shared folders (SMB)
-  osx_defaults:
-    domain: /Library/Preferences/SystemConfiguration/com.apple.smb.server
-    key: AllowGuestAccess
-    type: boolean
-    value: false
-    state: present
-  become: true
+#- name: Disable Guest access to shared folders (SMB)
+#  osx_defaults:
+#    domain: /Library/Preferences/SystemConfiguration/com.apple.smb.server
+#    key: AllowGuestAccess
+#    type: boolean
+#    value: false
+#    state: present
+#  become: true
 
 ###############################################################################
 # Date & Time                                                                 #
@@ -207,21 +208,21 @@
     value: false
     state: present
 
-- name: Flash the time separators
-  osx_defaults:
-    domain: com.apple.menuextra.clock
-    key: FlashDateSeparators
-    type: boolean
-    value: true
-    state: present
+#- name: Flash the time separators
+#  osx_defaults:
+#    domain: com.apple.menuextra.clock
+#    key: FlashDateSeparators
+#    type: boolean
+#    value: true
+#    state: present
 
-- name: Set Clock format to EEE HH:mm
-  osx_defaults:
-    domain: com.apple.menuextra.clock
-    key: DateFormat
-    type: string
-    value: "EEE HH:mm"
-    state: present
+#- name: Set Clock format to EEE HH:mm
+#  osx_defaults:
+#    domain: com.apple.menuextra.clock
+#    key: DateFormat
+#    type: string
+#    value: "EEE HH:mm"
+#    state: present
 
 ###############################################################################
 # Safari                                                                      #
