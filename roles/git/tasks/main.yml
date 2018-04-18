@@ -63,5 +63,5 @@
     -s {{ github.keychain.server }}
     -w {{ github.keychain.password }}
     -r {{ github.keychain.protocol }}
-  when: result|failed
+  when: result is failed
   no_log: true
