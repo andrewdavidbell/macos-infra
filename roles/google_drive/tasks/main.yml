@@ -1,0 +1,8 @@
+---
+# file: roles/google_drive/tasks/main.yml
+
+- name: Install Google Drive File Stream
+  homebrew_cask:
+    name: google-drive-file-stream
+    state: present
+  become: true

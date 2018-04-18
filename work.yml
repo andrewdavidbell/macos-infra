@@ -6,6 +6,7 @@
   roles:
     - { role: microsoft_office, tags: microsoft_office }
     - { role: slack, tags: slack }
-    - { role: firefox, tags: firefox }
-    - { role: hipchat, tags: hipchat }
-    - { role: discord, tags: discord }
+    - { role: google_drive, tags: google_drive }
+#    - { role: firefox, tags: firefox }
+#    - { role: hipchat, tags: hipchat }
+#    - { role: discord, tags: discord }
