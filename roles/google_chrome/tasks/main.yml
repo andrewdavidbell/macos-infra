@@ -1,0 +1,7 @@
+---
+# file: roles/google_chrome/tasks/main.yml
+
+- name: Install Google Chrome
+  homebrew_cask:
+    name: google-chrome
+    state: present

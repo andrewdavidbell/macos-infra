@@ -10,4 +10,4 @@
     - { role: thehitlist, tags: thehitlist }
     - { role: flux, tags: flux }
     - { role: snitch, tags: snitch }
-    - { role: chrome, tags: chrome }
+    - { role: google_chrome, tags: google_chrome }
