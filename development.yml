@@ -16,3 +16,4 @@
     - { role: awscli, tags: awscli }
     - { role: jq, tags: jq }
     - { role: qlmarkdown, tags: qlmarkdown }
+    - { role: nvm, tags: nvm }
