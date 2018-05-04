@@ -5,3 +5,21 @@
   homebrew:
     name: nvm
     state: present
+
+- name: Make {{ ansible_user_dir }}/.nvm
+  file:
+    path: "{{ ansible_user_dir }}/.nvm"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0755
+
+- name: Ensure nvm.sh is sourced from {{ ansible_user_dir }}/.bashrc
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc"
+    block: |
+      export NVM_DIR="$HOME/.nvm"
+      [ -s /usr/local/opt/nvm/nvm.sh ] && . /usr/local/opt/nvm/nvm.sh
+      [ -s /usr/local/opt/nvm/etc/bash_completion.d/nvm ] && . /usr/local/opt/nvm/etc/bash_completion.d/nvm
+    marker: '# {mark} ANSIBLE MANAGED BLOCK - nvm'
+    create: yes
