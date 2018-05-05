@@ -8,8 +8,8 @@
     - { role: dropbox, tags: dropbox }
     - { role: evernote, tags: evernote }
     - { role: arduino, tags: arduino }
+    - { role: handbrake, tags: handbrake }
     # TODO
     # - { role: neooffice, tags: neooffice }
-    # - { role: handbrake, tags: handbrake }
     # - { role: xld, tags: xld }
     # - { role: heli_x, tags: heli_x }
