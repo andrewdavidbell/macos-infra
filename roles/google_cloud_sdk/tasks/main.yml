@@ -10,7 +10,7 @@
   blockinfile:
     dest: "{{ ansible_user_dir }}/.bashrc"
     block: |
-      [ -e /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc] && . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
-      [ -e /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc] && . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
+      [ -e /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc ] && . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
+      [ -e /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc ] && . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
     marker: '# {mark} ANSIBLE MANAGED BLOCK - google-cloud-sdk'
     create: yes
