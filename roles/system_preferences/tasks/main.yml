@@ -54,12 +54,12 @@
     value: 5
     state: present
 
-- name: Turn on application level firewall and block all incoming connections
+- name: Turn on application level firewall, allowing incoming connections for built-in and downloaded signed software
   osx_defaults:
     domain: /Library/Preferences/com.apple.alf
     key: globalstate
     type: int
-    value: 2
+    value: 1
     state: present
   become: true
 
