@@ -1,0 +1,5 @@
+---
+# file: roles/nodejs/meta/main.yml
+
+dependencies:
+  - { role: nvm, tags: nvm }
