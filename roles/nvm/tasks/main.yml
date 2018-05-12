@@ -1,7 +1,7 @@
 ---
 # file: roles/nvm/tasks/main.yml
 
-- name: Install node.js version manager
+- name: Install nodejs version manager
   homebrew:
     name: nvm
     state: present
@@ -20,6 +20,5 @@
     block: |
       export NVM_DIR="$HOME/.nvm"
       [ -s /usr/local/opt/nvm/nvm.sh ] && . /usr/local/opt/nvm/nvm.sh
-      [ -s /usr/local/opt/nvm/etc/bash_completion.d/nvm ] && . /usr/local/opt/nvm/etc/bash_completion.d/nvm
     marker: '# {mark} ANSIBLE MANAGED BLOCK - nvm'
     create: yes
