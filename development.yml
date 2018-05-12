@@ -18,4 +18,5 @@
     - { role: qlmarkdown, tags: qlmarkdown }
     - { role: nvm, tags: nvm }
     - { role: nodejs, tags: nodejs }
+    - { role: npm, tags: npm }
     - { role: google_cloud_sdk, tags: google_cloud_sdk }
