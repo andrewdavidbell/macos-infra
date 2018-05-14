@@ -2,6 +2,8 @@
 # file: roles/nodejs/tasks/main.yml
 
 - name: Install Long Term Support (LTS) version of nodejs
-  shell: nvm install --lts
+  shell: |
+    [ -s /usr/local/opt/nvm/nvm.sh ] && . /usr/local/opt/nvm/nvm.sh
+    nvm install --lts
   args:
     executable: /bin/bash
