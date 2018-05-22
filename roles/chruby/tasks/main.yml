@@ -1,0 +1,16 @@
+---
+# file: roles/chruby/tasks/main.yml
+
+- name: Install chruby
+  homebrew:
+    name: chruby
+    state: present
+
+- name: Source chruby.sh & auto.sh from {{ ansible_user_dir }}/.bashrc
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc"
+    block: |
+      [ -s /usr/local/opt/chruby/share/chruby/chruby.sh ] && . /usr/local/opt/chruby/share/chruby/chruby.sh
+      [ -s /usr/local/opt/chruby/share/chruby/auto.sh ] && . /usr/local/opt/chruby/share/chruby/auto.sh
+    marker: '# {mark} ANSIBLE MANAGED BLOCK - chruby'
+    create: yes

@@ -1,0 +1,7 @@
+---
+# file: roles/ruby-install/tasks/main.yml
+
+- name: Install ruby-install
+  homebrew:
+    name: ruby-install
+    state: present

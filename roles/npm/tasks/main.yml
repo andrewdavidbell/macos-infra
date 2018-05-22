@@ -1,7 +1,0 @@
----
-# file: roles/npm/tasks/main.yml
-
-- name: Install nodejs package manager
-  homebrew:
-    name: npm
-    state: present
