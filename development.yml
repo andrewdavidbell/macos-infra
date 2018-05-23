@@ -17,7 +17,7 @@
     - { role: jq, tags: jq }
     - { role: qlmarkdown, tags: qlmarkdown }
     - { role: nvm, tags: nvm }
-#    - { role: nodejs, tags: nodejs }
+    - { role: nodejs, tags: nodejs }
     - { role: google_cloud_sdk, tags: google_cloud_sdk }
     - { role: chruby, tags: chruby }
     - { role: ruby-install, tags: ruby-install }
