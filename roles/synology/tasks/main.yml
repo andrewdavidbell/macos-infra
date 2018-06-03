@@ -3,7 +3,7 @@
 
 - name: Install Tap for Synology applications
   homebrew_tap:
-    name: caskroom/drivers
+    name: homebrew/cask-drivers
     state: present
 
 - name: Install Synology Drive
