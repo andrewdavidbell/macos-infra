@@ -1,0 +1,5 @@
+---
+# file: roles/ruby/meta/main.yml
+
+dependencies:
+  - { role: ruby-install, tags: ruby-install }

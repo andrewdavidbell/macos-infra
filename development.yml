@@ -21,3 +21,4 @@
     - { role: google_cloud_sdk, tags: google_cloud_sdk }
     - { role: chruby, tags: chruby }
     - { role: ruby-install, tags: ruby-install }
+    - { role: ruby, tags: ruby }
