@@ -10,7 +10,14 @@
   blockinfile:
     dest: "{{ ansible_user_dir }}/.bashrc"
     block: |
-      [ -s /usr/local/opt/chruby/share/chruby/chruby.sh ] && . /usr/local/opt/chruby/share/chruby/chruby.sh
-      [ -s /usr/local/opt/chruby/share/chruby/auto.sh ] && . /usr/local/opt/chruby/share/chruby/auto.sh
+      [ -s /usr/local/share/chruby/chruby.sh ] && . /usr/local/share/chruby/chruby.sh
+      if [ -s /usr/local/share/chruby/auto.sh ]; then
+        . /usr/local/share/chruby/auto.sh
+        if [[ "$__bp_imported" == "defined" ]]; then
+          if [[ ! "$preexec_functions" == *chruby_auto* ]]; then
+            preexec_functions+=("chruby_auto")
+          fi
+        fi
+      fi
     marker: '# {mark} ANSIBLE MANAGED BLOCK - chruby'
     create: yes
