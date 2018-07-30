@@ -16,12 +16,7 @@
   when:
     - not ansible_check_mode
     - vsc_extensions.stdout.find(item.name) == -1
-  with_items:
-    - { name: 'ms-python.python', version: '0.9.1' }
-    - { name: 'mauve.terraform', version: '0.0.20' }
-    - { name: 'jpogran.puppet-vscode', version: '0.9.0' }
-    - { name: 'eamodio.gitlens', version: '8.0.2' }
-    - { name: 'aws-scripting-guy.cform', version: '0.0.10' }
+  with_items: "{{ visual_studio_code.extensions }}"
 
 - name: Add Visual Studio Code User settings
   template:
