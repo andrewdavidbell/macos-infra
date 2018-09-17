@@ -1,6 +1,7 @@
 {
     "files.trimTrailingWhitespace": true,
     "editor.renderWhitespace": "all",
+    "editor.rulers": [80],
     "git.confirmSync": false,
     "window.zoomLevel": 0,
     "python.linting.pylintUseMinimalCheckers": false,
