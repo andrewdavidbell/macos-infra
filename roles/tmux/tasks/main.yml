@@ -1,0 +1,7 @@
+---
+# file: roles/tmux/tasks/main.yml
+
+- name: Install tmux
+  homebrew:
+    name: tmux
+    state: present

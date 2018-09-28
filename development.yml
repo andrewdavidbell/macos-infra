@@ -23,3 +23,4 @@
     - { role: ruby-install, tags: ruby-install }
     - { role: ruby, tags: ruby }
     - { role: postman, tags: postman }
+    - { role: tmux, tags: tmux }
