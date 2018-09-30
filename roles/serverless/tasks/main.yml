@@ -1,0 +1,7 @@
+---
+# file: roles/serverless/tasks/main.yml
+
+- name: Install serverless framework
+  homebrew:
+    name: serverless
+    state: present
