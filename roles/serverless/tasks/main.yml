@@ -5,3 +5,4 @@
   homebrew:
     name: serverless
     state: present
+    install_options: ignore-dependencies
