@@ -1,0 +1,7 @@
+---
+# file: roles/aerial/tasks/main.yml
+
+- name: Install Aerial
+  homebrew_cask:
+    name: aerial
+    state: present
