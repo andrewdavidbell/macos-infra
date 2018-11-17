@@ -11,4 +11,3 @@
     - { role: flux, tags: flux }
     - { role: snitch, tags: snitch }
     - { role: google_chrome, tags: google_chrome }
-    - { role: aerial , tags: aerial }

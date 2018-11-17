@@ -7,6 +7,7 @@
     - { role: microsoft_office, tags: microsoft_office }
     - { role: slack, tags: slack }
     - { role: google_drive, tags: google_drive }
+    - { role: aerial , tags: aerial }
 #    - { role: firefox, tags: firefox }
 #    - { role: hipchat, tags: hipchat }
 #    - { role: discord, tags: discord }
