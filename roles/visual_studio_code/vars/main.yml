@@ -9,3 +9,4 @@ visual_studio_code:
     - { name: 'eamodio.gitlens', version: '8.0.2' }
     - { name: 'aws-scripting-guy.cform', version: '0.0.10' }
     - { name: 'vscoss.vscode-ansible', version: '0.3.0' }
+    - { name: 'aws-toolkit-vscode', version: '0.0.1' }
