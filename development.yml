@@ -25,3 +25,4 @@
     - { role: postman, tags: postman }
     - { role: tmux, tags: tmux }
     - { role: serverless, tags: serverless }
+    - { role: github, tags: github }

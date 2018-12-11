@@ -1,0 +1,7 @@
+---
+# file: roles/github/tasks/main.yml
+
+- name: Install GitHub Desktop
+  homebrew_cask:
+    name: github
+    state: present
