@@ -26,3 +26,4 @@
     - { role: tmux, tags: tmux }
     - { role: serverless, tags: serverless }
     - { role: github, tags: github }
+    - { role: azure_cli, tags: azure_cli }
