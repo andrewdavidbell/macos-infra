@@ -27,3 +27,4 @@
     - { role: serverless, tags: serverless }
     - { role: github, tags: github }
     - { role: azure_cli, tags: azure_cli }
+    - { role: certbot, tags: certbot }
