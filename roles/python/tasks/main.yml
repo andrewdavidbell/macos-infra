@@ -45,6 +45,10 @@
            line: 'export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python2/bin/python2' }
     - { regexp: '^export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=',
            line: "export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python /usr/local/bin/python2 --system-site-packages'" }
+    - { regexp: '^export PIP_REQUIRE_VIRTUALENV=',
+           line: 'export PIP_REQUIRE_VIRTUALENV=true' }
+    - { regexp: '^export PIP_VIRTUALENV_BASE=',
+           line: 'export PIP_VIRTUALENV_BASE=$WORKON_HOME' }
     - { regexp: '^source /usr/local/bin/virtualenvwrapper_lazy.sh',
            line: 'source /usr/local/bin/virtualenvwrapper_lazy.sh' }
 
