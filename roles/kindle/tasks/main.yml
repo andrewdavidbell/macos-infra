@@ -1,0 +1,7 @@
+---
+# file: roles/kindle/tasks/main.yml
+
+- name: Install Send to Kindle
+  homebrew_cask:
+    name: send-to-kindle
+    state: present

@@ -9,6 +9,7 @@
     - { role: evernote, tags: evernote }
     - { role: arduino, tags: arduino }
     - { role: handbrake, tags: handbrake }
+    - { role: kindle, tags: kindle }
     # TODO
     # - { role: neooffice, tags: neooffice }
     # - { role: xld, tags: xld }
