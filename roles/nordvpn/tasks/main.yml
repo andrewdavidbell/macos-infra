@@ -1,0 +1,7 @@
+---
+# file: roles/nordvpn/tasks/main.yml
+
+- name: Install NordVPN 
+  homebrew_cask:
+    name: nordvpn
+    state: present
