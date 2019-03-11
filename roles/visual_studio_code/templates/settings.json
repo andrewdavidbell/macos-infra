@@ -6,5 +6,8 @@
     "window.zoomLevel": 0,
     "python.linting.pylintUseMinimalCheckers": false,
     "python.venvPath": "{{ ansible_user_dir }}/.virtualenvs/",
-    "gitlens.codeLens.enabled": false
+    "gitlens.codeLens.enabled": false,
+    "files.associations": {
+        "**/*.yml": "ansible"
+    }
 }
