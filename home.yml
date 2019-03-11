@@ -4,14 +4,30 @@
   hosts: home
 
   roles:
-    - { role: epson_wf_3620, tags: epson_wf_3620 }
-    - { role: dropbox, tags: dropbox }
-    - { role: evernote, tags: evernote }
-    - { role: arduino, tags: arduino }
-    - { role: handbrake, tags: handbrake }
-    - { role: nordvpn, tags: nordvpn }
-    - { role: kindle, tags: kindle }
-    # TODO
-    # - { role: neooffice, tags: neooffice }
-    # - { role: xld, tags: xld }
-    # - { role: heli_x, tags: heli_x }
+    - role: epson_wf_3620
+      tags: epson_wf_3620
+
+    - role: dropbox
+      tags: dropbox
+
+    - role: evernote
+      tags: evernote
+
+    - role: arduino
+      tags: arduino
+
+    - role: handbrake
+      tags: handbrake
+
+    - role: nordvpn
+      tags: nordvpn
+
+    - role: kindle
+      tags: kindle
+
+    # - role: neooffice
+    #   tags: neooffice
+    # - role: xld
+    #   tags: xld
+    # - role: heli_x
+    #   tags: heli_x

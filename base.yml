@@ -4,10 +4,23 @@
   hosts: base
 
   roles:
-    - { role: system_preferences, tags: system_preferences }
-    - { role: synology, tags: synology }
-    - { role: 1password, tags: 1password }
-    - { role: thehitlist, tags: thehitlist }
-    - { role: flux, tags: flux }
-    - { role: snitch, tags: snitch }
-    - { role: google_chrome, tags: google_chrome }
+    - role: system_preferences
+      tags: system_preferences
+
+    - role: synology
+      tags: synology
+
+    - role: 1password
+      tags: 1password
+
+    - role: thehitlist
+      tags: thehitlist
+
+    - role: flux
+      tags: flux
+
+    - role: snitch
+      tags: snitch
+
+    - role: google_chrome
+      tags: google_chrome

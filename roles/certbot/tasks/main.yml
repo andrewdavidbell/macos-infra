@@ -1,8 +1,0 @@
----
-# file: roles/certbot/tasks/main.yml
-
-# https://certbot.eff.org
-- name: Install certbot
-  homebrew:
-    name: certbot
-    state: present

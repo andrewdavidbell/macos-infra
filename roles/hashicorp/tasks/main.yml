@@ -1,10 +1,10 @@
 ---
-# file: roles/vagrant/tasks/main.yml
+# file: roles/hashicorp/tasks/main.yml
 
 - name: Install Vagrant
   homebrew_cask:
     name: vagrant
-    state: present
+    state: "{{ hashicorp.vagrant.state }}"
 
 - name: Vagrant root privilege for NFS shared folders
   copy:
@@ -18,14 +18,14 @@
 - name: Install Packer
   homebrew:
     name: packer
-    state: present
+    state: "{{ hashicorp.packer.state }}"
 
 - name: Install Terraform
   homebrew:
     name: terraform
-    state: present
+    state: "{{ hashicorp.terraform.state }}"
 
 - name: Install Vault
   homebrew:
     name: vault
-    state: present
+    state: "{{ hashicorp.vault.state }}"

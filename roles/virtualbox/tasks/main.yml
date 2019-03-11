@@ -1,12 +1,12 @@
 ---
 # file: roles/virtualbox/tasks/main.yml
 
-- name: Install VirtualBox 
+- name: Install VirtualBox
   homebrew_cask:
     name: virtualbox
-    state: present
+    state: "{{ virtualbox.state }}"
 
 - name: Install VirtualBox Extension Pack
   homebrew_cask:
     name: virtualbox-extension-pack
-    state: present
+    state: "{{ virtualbox.state }}"

@@ -1,0 +1,12 @@
+---
+# file: roles/hashicorp/defaults/main.yml
+
+hashicorp:
+  vagrant:
+    state: latest
+  packer:
+    state: latest
+  terraform:
+    state: latest
+  vault:
+    state: latest

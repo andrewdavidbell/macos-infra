@@ -4,27 +4,71 @@
   hosts: development
 
   roles:
-    - { role: bash, tags: bash }
-    - { role: ssh, tags: ssh }
-    - { role: git, tags: git }
-    - { role: python, tags: python }
-    - { role: visual_studio_code, tags: visual_studio_code }
-    - { role: iterm2, tags: iterm2 }
-    - { role: virtualbox, tags: virtualbox }
-    - { role: hashicorp, tags: hashicorp }
-    - { role: docker, tags: docker }
-    - { role: awscli, tags: awscli }
-    - { role: jq, tags: jq }
-    - { role: qlmarkdown, tags: qlmarkdown }
-    - { role: nvm, tags: nvm }
-    - { role: nodejs, tags: nodejs }
-    - { role: google_cloud_sdk, tags: google_cloud_sdk }
-    - { role: chruby, tags: chruby }
-    - { role: ruby-install, tags: ruby-install }
-    - { role: ruby, tags: ruby }
-    - { role: postman, tags: postman }
-    - { role: tmux, tags: tmux }
-    - { role: serverless, tags: serverless }
-    - { role: github, tags: github }
-    - { role: azure_cli, tags: azure_cli }
-    - { role: certbot, tags: certbot }
+    - role: bash
+      tags: bash
+
+    - role: ssh
+      tags: ssh
+
+    - role: git
+      tags: git
+
+    - role: python
+      tags: python
+
+    - role: visual_studio_code
+      tags: visual_studio_code
+
+    - role: iterm2
+      tags: iterm2
+
+    - role: virtualbox
+      tags: virtualbox
+
+    - role: hashicorp
+      tags: hashicorp
+
+    - role: docker
+      tags: docker
+
+    - role: awscli
+      tags: awscli
+
+    - role: jq
+      tags: jq
+
+    - role: qlmarkdown
+      tags: qlmarkdown
+
+    - role: nvm
+      tags: nvm
+
+    - role: nodejs
+      tags: nodejs
+
+    - role: google_cloud_sdk
+      tags: google_cloud_sdk
+
+    - role: chruby
+      tags: chruby
+
+    - role: ruby-install
+      tags: ruby-install
+
+    - role: ruby
+      tags: ruby
+
+    - role: postman
+      tags: postman
+
+    - role: tmux
+      tags: tmux
+
+    - role: serverless
+      tags: serverless
+
+    - role: github
+      tags: github
+
+    - role: azure_cli
+      tags: azure_cli

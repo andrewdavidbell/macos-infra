@@ -1,0 +1,5 @@
+---
+# file: roles/arduino/defaults/main.yml
+
+arduino:
+  state: latest
