@@ -1,5 +1,0 @@
----
-# file: roles/virtualbox/defaults/main.yml
-
-virtualbox:
-  state: latest

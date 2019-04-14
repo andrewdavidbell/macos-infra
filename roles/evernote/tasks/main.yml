@@ -1,7 +1,0 @@
----
-# file: roles/evernote/tasks/main.yml
-
-- name: Install Evernote
-  homebrew_cask:
-    name: evernote
-    state: present

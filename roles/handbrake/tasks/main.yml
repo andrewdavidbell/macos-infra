@@ -1,7 +1,0 @@
----
-# file: roles/handbrake/tasks/main.yml
-
-- name: Install Handbrake
-  homebrew_cask:
-    name: handbrake
-    state: present

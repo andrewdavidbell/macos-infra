@@ -1,0 +1,23 @@
+---
+# <ansible_base_dir>/roles/homebrew/tasks/casks.yml
+
+- name: Determine role name from cask item '{{ cask_item }}'
+  set_fact:
+    cask_role_name: "{{ cask_item.name | default(cask_item) | regex_replace('-', '_') }}"
+
+- name: Is there a '{{ cask_role_name }}' role?
+  stat:
+    path: "{{ role_path }}/../{{ cask_role_name }}"
+  register: r
+
+- name: Apply the role for this cask item
+  include_role:
+    name: "{{ cask_role_name }}"
+  when: r.stat.exists
+
+- name: Install the cask for this cask item
+  homebrew_cask:
+    name: "{{ cask_item.name | default(cask_item) }}"
+    install_options: "{{ cask_item.install_options | default('appdir=' + homebrew_cask_appdir) }}"
+    state: present
+  when: not r.stat.exists

@@ -1,82 +1,20 @@
 ---
-# file: roles/python/tasks/main.yml
+# <ansible_base_dir>/roles/python/tasks/main.yml
 
-# Python 2 (already installed because it's an Ansible dependency)
-- name: Install Python 2
-  homebrew:
-    name: python@2
-    state: present
-
-- name: Install packages for Python 2
-  pip:
-    name: "{{ item.name }}"
-    executable: /usr/local/opt/python2/bin/pip2
-  with_items:
-    - { name: virtualenv }
-    - { name: virtualenvwrapper }
-    - { name: autopep8 }
-    - { name: pylint }
-    - { name: mock }
-    - { name: rope }
-
-- name: Add alias for virtualenv using Python 2
-  lineinfile:
-    path: "{{ ansible_user_dir }}/.bashrc"
-    regexp: '^alias venv2='
-    line: 'alias venv2="virtualenv --python /usr/local/opt/python2/bin/python2 --system-site-packages .venv"'
-    owner: "{{ ansible_user_id }}"
-    group: staff
-    mode: 0644
-    create: yes
-
-- name: Setup virtualenvwrapper for Python 2
-  lineinfile:
-    dest: "{{ ansible_user_dir }}/.bashrc"
-    owner: "{{ ansible_user_id }}"
-    group: staff
-    mode: 0644
-    regexp: "{{ item.regexp }}"
-    line: "{{ item.line }}"
-    create: yes
-  with_items:
-    - { regexp: '^ ',
-           line: ' ' }
-    - { regexp: '^export VIRTUALENVWRAPPER_PYTHON=',
-           line: 'export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python2/bin/python2' }
-    - { regexp: '^export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=',
-           line: "export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python /usr/local/bin/python2 --system-site-packages'" }
-    - { regexp: '^export PIP_REQUIRE_VIRTUALENV=',
-           line: 'export PIP_REQUIRE_VIRTUALENV=true' }
-    - { regexp: '^export PIP_VIRTUALENV_BASE=',
-           line: 'export PIP_VIRTUALENV_BASE=$WORKON_HOME' }
-    - { regexp: '^source /usr/local/bin/virtualenvwrapper_lazy.sh',
-           line: 'source /usr/local/bin/virtualenvwrapper_lazy.sh' }
-
-
-# Python 3
 - name: Install Python 3
   homebrew:
     name: python
-    state: present
+    state: "{{ python_state }}"
 
 - name: Install packages for Python 3
   pip:
-    name: "{{ item.name }}"
-    executable: /usr/local/bin/pip
-  with_items:
-    - { name: virtualenv }
-    - { name: virtualenvwrapper }
-    - { name: autopep8 }
-    - { name: pylint }
-    - { name: mock }
-    - { name: rope }
+    name: "{{ item.name | default(item) }}"
+    executable: /usr/local/bin/pip3
+  loop: "{{ python_packages }}"
+  tags: python_packages
 
-- name: Add alias for virtualenv using Python 3
+- name: Add alias for virtualenv using Python 3 (zsh)
   lineinfile:
-    path: "{{ ansible_user_dir }}/.bashrc"
+    path: "{{ ansible_user_dir }}/.zshrc"
     regexp: '^alias venv='
-    line: 'alias venv="/usr/local/bin/python -m venv --system-site-packages .venv"'
-    owner: "{{ ansible_user_id }}"
-    group: staff
-    mode: 0644
-    create: yes
+    line: 'alias venv="/usr/local/bin/python3 -m venv --system-site-packages .venv"'

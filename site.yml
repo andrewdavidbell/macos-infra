@@ -1,12 +1,76 @@
 ---
-# Top level playbook to automate configuration of macOS-based machine
+- hosts: all
 
-- import_playbook: base.yml
+  pre_tasks:
+    - name: Create soft links to iCloud Staging location
+      file:
+        src: "{{ ansible_user_dir }}/Library/Mobile Documents/com~apple~CloudDocs/Staging"
+        dest: "{{ ansible_user_dir }}/.staging"
+        state: link
+        owner: "{{ ansible_user_id }}"
+        group: staff
+        mode: 0755
 
-- import_playbook: home.yml
-  when: '"Macmini" in ansible_model'
+    - name: Create soft links to iCloud Source location
+      file:
+        src: "{{ ansible_user_dir }}/Library/Mobile Documents/com~apple~CloudDocs/Source"
+        dest: "{{ ansible_user_dir }}/.source"
+        state: link
+        owner: "{{ ansible_user_id }}"
+        group: staff
+        mode: 0755
 
-- import_playbook: work.yml
-  when: '"MacBookPro" in ansible_model'
+  roles:
+    # - role: zsh
+    #   tags: zsh
 
-- import_playbook: development.yml
+    - role: homebrew
+      tags: homebrew
+
+    - role: ssh
+      tags: ssh
+
+  tasks:
+    - name: Create development directory
+      file:
+        path: "{{ ansible_user_dir }}/Development"
+        state: directory
+        owner: "{{ ansible_user_id }}"
+        group: staff
+        mode: 0755
+
+    # - name: Alias to development directory
+    #   lineinfile:
+    #     path: "{{ ansible_user_dir }}/.zshrc"
+    #     regexp: '^alias dev='
+    #     line: 'alias dev="cd ~/Development"'
+
+    # - name: Apply Vim configuration
+    #   blockinfile:
+    #     dest: "{{ ansible_user_dir }}/.vimrc"
+    #     block: |
+    #       " enable syntax highlighting
+    #       syntax on
+    #       syntax enable
+
+    #       " enable auto indenation and spaces only
+    #       set expandtab
+    #       set tabstop=2
+    #       set smartindent
+
+    #       " set line numbers for quicker navigation in vim
+    #       set number
+    #       set cursorline
+
+    #       " enable mouse scrolling
+    #       set mouse=a
+    #     marker: '" {mark} ANSIBLE MANGED BLOCK'
+    #     create: yes
+
+    # - name: Install kubectl aliases for zsh
+    #   lineinfile:
+    #     path: "{{ ansible_user_dir }}/.zshrc"
+    #     regexp: '^ kubectl'
+    #     insertafter: '# ANSIBLE MANAGED: Antigen'
+    #     line: '  kubectl'
+

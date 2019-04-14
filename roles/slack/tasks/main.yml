@@ -1,7 +1,0 @@
----
-# file: roles/slack/tasks/main.yml
-
-- name: Install Slack
-  homebrew_cask:
-    name: slack
-    state: present

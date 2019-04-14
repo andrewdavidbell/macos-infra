@@ -1,17 +1,10 @@
 ---
-# file: roles/github/tasks/main.yml
+# <ansible_base_dir>/roles/git/tasks/main.yml
 
 - name: Install git
   homebrew:
     name: git
     state: present
-
-- name: We're not using a Github API token for Homebrew
-  lineinfile:
-    path: "{{ ansible_user_dir }}/.bashrc"
-    regexp: '^export HOMEBREW_NO_GITHUB_API'
-    line: 'export HOMEBREW_NO_GITHUB_API=1'
-    create: yes
 
 - name: Set name in global git configuration
   git_config:
@@ -19,17 +12,48 @@
     scope: global
     value: Andrew Bell
 
-- name: Set email in global git configuration
+- name: Configure an alias to the github email in global git configuration
   git_config:
-    name: user.email
+    name: alias.home
     scope: global
-    value: "{{ github.noreply_user_email }}"
+    value: config user.email "{{ github_email }}"
 
 - name: Set page in global git configuration
   git_config:
     name: core.pager
     scope: global
     value: less -r
+
+# https://spin.atomicobject.com/2020/05/05/git-configurations-default/
+- name: Configure Pull with Rebase
+  git_config:
+    name: pull.rebase
+    scope: global
+    value: "true"
+
+- name: Configure Prune on Fetch
+  git_config:
+    name: fetch.prune
+    scope: global
+    value: "true"
+
+- name: Differentiate Moved Lines
+  git_config:
+    name: diff.colorMoved
+    scope: global
+    value: zebra
+
+- name: Configure autoStash
+  git_config:
+    name: rebase.autoStash
+    scope: global
+    value: "true"
+
+- name: Configure autoSquash
+  git_config:
+    name: rebase.autoSquash
+    scope: global
+    value: "true"
 
 - name: Ensure .config/git directory exists
   file:
@@ -47,21 +71,9 @@
     group: staff
     mode: 0644
 
-- name: Check for github entry in keychain
-  command: >
-    /usr/bin/security find-internet-password
-    -a {{ github.keychain.account }}
-    -s {{ github.keychain.server }}
-  register: result
-  ignore_errors: true
-  changed_when: false
-
-- name: Add github entry to keychain
-  command: >
-    /usr/bin/security add-internet-password
-    -a {{ github.keychain.account }}
-    -s {{ github.keychain.server }}
-    -w {{ github.keychain.password }}
-    -r {{ github.keychain.protocol }}
-  when: result is failed
-  no_log: true
+- name: Install git aliases for "{{ ansible_user_dir }}/.zshrc"
+  lineinfile:
+    path: "{{ ansible_user_dir }}/.zshrc"
+    regexp: '^  git'
+    insertafter: '# ANSIBLE MANAGED: Antigen'
+    line: '  git'

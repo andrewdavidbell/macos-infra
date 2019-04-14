@@ -1,9 +1,14 @@
 ---
-# file: roles/nodejs/tasks/main.yml
+# <ansible_base_dir>/roles/nodejs/tasks/main.yml
 
-- name: Install Long Term Support (LTS) version of nodejs
-  shell: |
-    [ -s /usr/local/opt/nvm/nvm.sh ] && . /usr/local/opt/nvm/nvm.sh
-    nvm install --lts
-  args:
-    executable: /bin/bash
+- name: Install NodeJS
+  homebrew:
+    name: node
+    state: "{{ nodejs_state }}"
+
+- name: Install packages for NodeJS
+  npm:
+    name: "{{ item.name | default(item) }}"
+    global: yes
+  loop: "{{ nodejs_packages }}"
+  tags: nodejs_packages

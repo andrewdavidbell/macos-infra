@@ -1,0 +1,4 @@
+---
+# <ansible_base_dir>/roles/vagrant/defaults/main.yml
+
+vagrant_state: present

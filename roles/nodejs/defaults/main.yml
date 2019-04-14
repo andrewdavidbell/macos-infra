@@ -1,0 +1,4 @@
+---
+# <ansible_base_dir>/roles/nodejs/defaults/main.yml
+
+nodejs_state: present

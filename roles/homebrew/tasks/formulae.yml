@@ -1,0 +1,23 @@
+---
+# <ansible_base_dir>/roles/homebrew/tasks/formulae.yml
+
+- name: Determine role name from formula item '{{ formula_item }}'
+  set_fact:
+    formula_role_name: "{{ formula_item.name | default(formula_item) | regex_replace('-', '_') }}"
+
+- name: Is there a '{{ formula_role_name }}' role?
+  stat:
+    path: "{{ role_path }}/../{{ formula_role_name }}"
+  register: r
+
+- name: Apply the role for this formula item
+  include_role:
+    name: "{{ formula_role_name }}"
+  when: r.stat.exists
+
+- name: Install the formula for this formula item
+  homebrew:
+    name: "{{ formula_item.name | default(formula_item) }}"
+    install_options: "{{ formula_item.install_options | default(omit) }}"
+    state: present
+  when: not r.stat.exists

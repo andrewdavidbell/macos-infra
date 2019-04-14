@@ -1,5 +1,5 @@
 ---
-# file: roles/ssh/tasks/main.yml
+# <ansible_base_dir>/roles/ssh/tasks/main.yml
 
 - name: Ensure {{ ansible_user_dir }}/.ssh directory exists
   file:
@@ -9,12 +9,42 @@
     group: staff
     mode: 0755
 
-# These fragments are ignored by git to prevent leaking of secrets into source
-- name: Install SSH config file from fragments
-  assemble:
-    src: "{{ role_path }}/files/config.d"
-    dest: "{{ ansible_user_dir }}/.ssh/config"
-    ignore_hidden: yes
+- name: Ensure {{ ansible_user_dir }}/.ssh/config.d directory exists
+  file:
+    path: "{{ ansible_user_dir }}/.ssh/config.d"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0700
+
+- name: Ensure {{ ansible_user_dir }}/.ssh/keys directory exists
+  file:
+    path: "{{ ansible_user_dir }}/.ssh/keys"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0700
+
+- name: Install main SSH configuration
+  template:
+    src: templates/config
+    dest: "{{ ansible_user_dir }}/.ssh"
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0600
+
+- name: Copy configuration files into place
+  copy:
+    src: "{{ ssh_staging_dir }}/config.d/"
+    dest: "{{ ansible_user_dir }}/.ssh/config.d/"
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0600
+
+- name: Copy keys into place
+  copy:
+    src: "{{ ssh_staging_dir }}/keys/"
+    dest: "{{ ansible_user_dir }}/.ssh/keys/"
     owner: "{{ ansible_user_id }}"
     group: staff
     mode: 0600

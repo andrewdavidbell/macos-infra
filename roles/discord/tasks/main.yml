@@ -1,7 +1,0 @@
----
-# file: roles/discord/tasks/main.yml
-
-- name: Install Discord
-  homebrew_cask:
-    name: discord
-    state: present

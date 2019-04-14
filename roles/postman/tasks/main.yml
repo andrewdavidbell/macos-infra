@@ -1,8 +1,0 @@
----
-# file: roles/postman/tasks/main.yml
-
-- name: Install Postman
-  homebrew_cask:
-    name: postman
-    state: present
-

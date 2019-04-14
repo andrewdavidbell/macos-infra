@@ -1,12 +1,12 @@
 ---
-# file: roles/visual_studio_code/tasks/main.yml
+# <ansible_base_dir>/roles/visual_studio_code/tasks/main.yml
 
 - name: Install Visual Studio Code
   homebrew_cask:
     name: visual-studio-code
-    state: present
+    state: "{{ visual_studio_code_state }}"
 
-- name: Check if Microsoft Python extension exists
+- name: Check if extensions exist
   command: /usr/local/bin/code --list-extensions
   register: vsc_extensions
   changed_when: false
@@ -16,12 +16,4 @@
   when:
     - not ansible_check_mode
     - vsc_extensions.stdout.find(item.name) == -1
-  with_items: "{{ visual_studio_code.extensions }}"
-
-- name: Add Visual Studio Code User settings
-  template:
-    src: templates/settings.json
-    dest: "{{ ansible_user_dir }}/Library/Application Support/Code/User/settings.json"
-    owner: "{{ ansible_user_id }}"
-    group: staff
-    mode: 0644
+  with_items: "{{ visual_studio_code_extensions }}"

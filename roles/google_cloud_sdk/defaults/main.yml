@@ -1,0 +1,4 @@
+---
+# <ansible_base_dir>/roles/google_cloud_sdk/defaults/main.yml
+
+google_cloud_sdk_state: present

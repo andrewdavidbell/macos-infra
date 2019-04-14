@@ -1,43 +1,22 @@
 ---
-# file: roles/iterm2/tasks/main.yml
+# <ansible_base_dir>/roles/iterm2/tasks/main.yml
 
 - name: Install iTerm2
   homebrew_cask:
     name: iterm2
-    state: present
+    state: "{{ iterm2_state }}"
 
-#
-#  get_url is failing to validate certs and even with validation switched off.
-#  Use wget instead for now.
-#  https://github.com/ansible/ansible/issues/33417
-#
-- name: Install wget as an alternative to Ansible's get_url module
-  homebrew:
-    name: wget
-    state: present
+- name: Fetch iTerm2 zsh integration script
+  get_url:
+    url: https://iterm2.com/shell_integration/zsh
+    dest: "{{ ansible_user_dir }}/.iterm2_shell_integration.zsh"
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0755
+    validate_certs: no
 
-# Note: this task wouldn't be required when using get_url
-- name: Check if iTerm2 shell integration script is installed
-  stat:
-    path: "{{ ansible_user_dir }}/.iterm2_shell_integration.bash"
-  register: iterm2_bash_script
-
-- name: Fetch iTerm2 shell integration script
-#  get_url:
-#    url: https://iterm2.com/shell_integration/bash
-#    dest: "{{ ansible_user_dir }}/.iterm2_shell_integration.bash"
-#    owner: "{{ ansible_user_id }}"
-#    group: staff
-#    mode: 0755
-#    validate_certs: no
-#
-  shell: >
-    wget --quiet https://iterm2.com/shell_integration/bash
-    -O {{ ansible_user_dir }}/.iterm2_shell_integration.bash
-  when: iterm2_bash_script.stat.exists == false
-
-- name: Load iTerm2 shell integration script at login
+- name: Load iTerm2 zsh integration script
   lineinfile:
-    path: "{{ ansible_user_dir }}/.bashrc"
-    regexp: '^\[ -e ~/.iterm2_shell_integration.bash \]'
-    line: '[ -e ~/.iterm2_shell_integration.bash ] && . ~/.iterm2_shell_integration.bash'
+    path: "{{ ansible_user_dir }}/.zshrc"
+    regexp: '^\[\[ -e "${HOME}/.iterm2_shell_integration.zsh" \]\]'
+    line: '[[ -e "${HOME}/.iterm2_shell_integration.zsh" ]] && source "${HOME}/.iterm2_shell_integration.zsh"'

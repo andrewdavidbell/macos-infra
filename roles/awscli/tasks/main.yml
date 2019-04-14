@@ -14,22 +14,28 @@
     group: staff
     mode: 0755
 
-# These fragments are ignored by git to prevent leaking of secrets into source
 - name: Install AWS config file from fragments
   assemble:
-    src: "{{ role_path }}/files/config.d"
+    src: "{{ awscli_staging_dir }}/config.d"
     dest: "{{ ansible_user_dir }}/.aws/config"
     ignore_hidden: yes
     owner: "{{ ansible_user_id }}"
     group: staff
     mode: 0600
 
-# These fragments are ignored by git to prevent leaking of secrets into source
 - name: Install AWS credentials file from fragments
   assemble:
-    src: "{{ role_path }}/files/credentials.d"
+    src: "{{ awscli_staging_dir }}/credentials.d"
     dest: "{{ ansible_user_dir }}/.aws/credentials"
     ignore_hidden: yes
     owner: "{{ ansible_user_id }}"
     group: staff
     mode: 0600
+
+- name: Install aws aliases for zsh
+  lineinfile:
+    path: "{{ ansible_user_dir }}/.zshrc"
+    regexp: '^ aws'
+    insertafter: '# ANSIBLE MANAGED: Antigen'
+    line: '  aws'
+

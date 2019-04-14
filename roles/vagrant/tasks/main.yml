@@ -1,0 +1,23 @@
+---
+# <ansible_base_dir>/roles/vagrant/tasks/main.yml
+
+- name: Install Vagrant
+  homebrew_cask:
+    name: vagrant
+    state: "{{ vagrant_state }}"
+
+- name: Vagrant root privilege for NFS shared folders
+  copy:
+    src: vagrant_nfs
+    dest: /private/etc/sudoers.d/vagrant_nfs
+    owner: root
+    group: wheel
+    mode: 0440
+  become: true
+
+- name: Install vagrant aliases for zsh
+  lineinfile:
+    path: "{{ ansible_user_dir }}/.zshrc"
+    regexp: '^  vagrant'
+    insertafter: '# ANSIBLE MANAGED: Antigen'
+    line: '  vagrant'
