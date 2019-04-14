@@ -1,5 +1,0 @@
----
-# file: roles/ruby/defaults/main.yml
-
-ruby:
-  version: 2.3.7

@@ -1,7 +1,0 @@
----
-# file: roles/firefox/tasks/main.yml
-
-- name: Install Firefox
-  homebrew_cask:
-    name: firefox
-    state: present

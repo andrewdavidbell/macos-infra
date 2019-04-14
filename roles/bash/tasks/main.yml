@@ -1,7 +1,7 @@
 ---
-# file: roles/bash/tasks/main.yml
+# <ansible_base_dir>/roles/bash/tasks/main.yml
 
-- name: Install ~/.bash_profile
+- name: Install {{ ansible_user_dir }}/.bash_profile
   copy:
     src: bash_profile
     dest: "{{ ansible_user_dir }}/.bash_profile"
@@ -9,28 +9,43 @@
     group: staff
     mode: 0644
 
+# https://itnext.io/programmable-completion-for-bash-on-macos-f81a0103080b
+- name: Install bash completion
+  homebrew:
+    name: bash-completion
+    state: present
+
 - name: Base {{ ansible_user_dir }}/.bashrc
   blockinfile:
     path: "{{ ansible_user_dir }}/.bashrc"
     block: |
       # Personal resource file for Bash(1) interactive non-login shells
 
+      HOMEBREW_PREFIX=$(brew --prefix)
+
       # Useful aliases
-      alias ls="ls -G"
-      alias ll="ls -lG"
-      alias la="ls -laG"
+      alias ls="ls -FG"
+      alias ll="ls -FlG"
+      alias la="ls -FlaG"
       alias cd..="cd .."
       alias dev="cd ~/Development"
-    marker: '# {mark} ANSIBLE MANAGED BLOCK - base'
+
+      # https://docs.brew.sh/Shell-Completion
+      if type brew &>/dev/null; then
+        if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+          source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+        else
+          for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+            [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+          done
+        fi
+      fi
+
+      # kubectl alias & completion
+      alias k="kubectl"
+      complete -F __start_kubectl k
+    marker: '# {mark} ANSIBLE MANAGED BLOCK: base'
     owner: "{{ ansible_user_id }}"
     group: staff
     mode: 0644
     create: yes
-
-- name: Create development directory
-  file:
-    path: "{{ ansible_user_dir }}/Development"
-    state: directory
-    owner: "{{ ansible_user_id }}"
-    group: staff
-    mode: 0755

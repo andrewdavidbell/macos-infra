@@ -1,0 +1,66 @@
+---
+# <ansible_base_dir>/roles/zsh/tasks/main.ym
+
+# Install Oh My Zsh and manage it's plugins with antigen
+# https://github.com/zsh-users/antigen
+
+- name: Install antigen
+  homebrew:
+    name: antigen
+    state: present
+
+- name: Base {{ ansible_user_dir }}/.zshrc
+  blockinfile:
+    path: "{{ ansible_user_dir }}/.zshrc"
+    block: |
+      HOMEBREW_PREFIX=$(brew --prefix)
+
+      source ${HOMEBREW_PREFIX}/share/antigen/antigen.zsh
+
+      # Load the oh-my-zsh's library.
+      antigen use oh-my-zsh
+
+      # Bundles from the default repo (robbyrussell's oh-my-zsh).
+      antigen bundles <<EOBUNDLES
+        macos
+        # ANSIBLE MANAGED: Antigen
+
+        # Syntax highlighting bundle.
+        zsh-users/zsh-syntax-highlighting
+
+        # Fish-like auto suggestions
+        zsh-users/zsh-autosuggestions
+
+        # Extra zsh completions
+        zsh-users/zsh-completions
+      EOBUNDLES
+
+      # Load the theme.
+      antigen theme agnoster
+
+      # Tell Antigen that you're done.
+      antigen apply
+
+      # Modify prompt
+      DEFAULT_USER=$(whoami)
+
+      # Load any custom configuration
+      [[ -e "${HOME}/.zshrc_custom" ]] && source "${HOME}/.zshrc_custom"
+    marker: '# {mark} ANSIBLE MANAGED BLOCK: base'
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0644
+    create: yes
+
+- name: Check if custom shell configuration exists
+  local_action: stat path="{{ zsh_staging_dir }}/zshrc_custom"
+  register: custom
+
+- name: Copy custom shell configuration if it exists
+  copy:
+    src: "{{ zsh_staging_dir }}/zshrc_custom"
+    dest: "{{ ansible_user_dir }}/.zshrc_custom"
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0644
+  when: custom.stat.exists

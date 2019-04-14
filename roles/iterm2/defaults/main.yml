@@ -1,0 +1,4 @@
+---
+# <ansible_base_dir>/roles/iterm2/defaults/main.yml
+
+iterm2_state: present

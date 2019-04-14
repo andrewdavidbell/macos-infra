@@ -1,0 +1,12 @@
+###############################################################################
+# SSH configuration
+###############################################################################
+
+Include config.d/*
+
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentitiesOnly yes
+  # ServerAliveCountMax defaults to 3 so disconnect will occur after 3 minutes
+  ServerAliveInterval 60

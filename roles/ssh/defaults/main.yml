@@ -1,0 +1,4 @@
+---
+# <ansible_base_dir>/roles/ssh/defaults/main.yml
+
+ssh_staging_dir: "{{ role_path }}/files"

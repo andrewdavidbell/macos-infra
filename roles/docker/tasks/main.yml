@@ -1,7 +1,0 @@
----
-# file: roles/docker/tasks/main.yml
-
-- name: Install Docker for Mac
-  homebrew_cask:
-    name: docker
-    state: present

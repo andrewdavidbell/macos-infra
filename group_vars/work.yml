@@ -1,0 +1,70 @@
+---
+# <ansible_base_dir>/group_vars/work.yml
+
+awscli_staging_dir: "~/.staging/awscli/work"
+ssh_staging_dir: "~/.staging/ssh/work"
+zsh_staging_dir: "~/.staging/zsh/work"
+
+homebrew_taps:
+  - homebrew/cask-drivers
+  # - versent/taps
+  # - wagoodman/dive
+  # - blendle/blendle # For kns
+  # - johanhaleby/kubetail
+
+homebrew_casks:
+  # - 1password # post: install license key
+  - anaconda
+  # - anki
+  - firefox
+  - flux
+  - google-chrome
+  # - google-cloud-sdk
+  - iterm2
+  # - kindle
+  - leapp
+  - lepton
+  - little-snitch # post: install license key
+  - micro-snitch # post: install license key
+  # - postman
+  - qlmarkdown
+  # - session-manager-plugin
+  - slack
+  - synology-drive
+  # - vagrant
+  # - virtualbox
+  # - virtualbox-extension-pack
+  - visual-studio-code
+
+homebrew_formulae:
+  # - awscli
+  - colima
+  # - dive
+  - dnsmasq
+  - docker
+  - docker-compose
+  - git
+  # - gitlab-runner
+  # - go
+  # - helm
+  # - hugo
+  # - jq
+  # - kind
+  # - kns
+  # - kubectl
+  # - kubectx
+  # - kubetail
+  # - kustomize
+  - mkcert
+  # - python
+  # - saml2aws
+  # - stern
+  # - terraform
+  # - tree
+
+# python_packages:
+#   - autopep8
+#   - pylint
+#   - mock
+#   - rope
+#   - cfn_flip

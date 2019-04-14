@@ -1,0 +1,4 @@
+---
+# <ansible_base_dir>/roles/python/defaults/main.yml
+
+python_state: present

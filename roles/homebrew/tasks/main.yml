@@ -1,0 +1,38 @@
+---
+# <ansible_base_dir>/roles/homebrew/tasks/main.yml
+
+- name: Update homebrew
+  command: /usr/local/bin/brew update
+  changed_when: false
+
+- name: Ensure configured taps (formula repositories) are installed
+  homebrew_tap:
+    tap: "{{ item.name | default(item) }}"
+    url: "{{ item.url | default(omit) }}"
+    state: present
+  loop: "{{ homebrew_taps }}"
+  tags: homebrew_taps
+
+- name: Ensure configured casks are installed
+  include_tasks:
+    file: casks.yml
+    apply:
+      tags: homebrew_casks
+  loop: "{{ homebrew_casks }}"
+  loop_control:
+    loop_var: cask_item
+  tags: homebrew_casks
+
+- name: Ensure configured formulae are installed
+  include_tasks:
+    file: formulae.yml
+    apply:
+      tags: homebrew_formulae
+  loop: "{{ homebrew_formulae }}"
+  loop_control:
+    loop_var: formula_item
+  tags: homebrew_formulae
+
+- name: Cleanup homebrew
+  command: /usr/local/bin/brew cleanup
+  changed_when: false

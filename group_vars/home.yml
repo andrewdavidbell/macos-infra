@@ -1,0 +1,67 @@
+---
+# <ansible_base_dir>/group_vars/home.yml
+
+awscli_staging_dir: "~/.staging/awscli/home"
+ssh_staging_dir: "~/.staging/ssh/home"
+zsh_staging_dir: "~/.staging/zsh/home"
+
+homebrew_taps:
+  - homebrew/cask-drivers
+  - wagoodman/dive
+  - blendle/blendle # for kns
+  - johanhaleby/kubetail
+
+homebrew_casks:
+  - 1password
+  - anki
+  - arduino
+  - docker
+  - dropbox
+  - evernote
+  - firefox
+  - flux
+  - github
+  - google-cloud-sdk
+  - handbrake
+  - iterm2
+  # - little-snitch # post: install license key
+  # - micro-snitch # post: install license key
+  - nordvpn
+  - postman
+  - qlmarkdown
+  - sdformatter
+  - send-to-kindle
+  # - synergy
+  - synology-drive
+  # - the-hit-list # requires Ansible Vault
+  - vagrant
+  - virtualbox
+  - virtualbox-extension-pack
+  - visual-studio-code
+
+homebrew_formulae:
+  - awscli
+  - dive
+  - git
+  - jq
+  - kind
+  - kns
+  - kubectx
+  - kubectl
+  - python
+  - terraform
+
+apple_disk_images:
+  - epson_wf_3620
+#   helix
+  - neooffice
+  - synology-notebook
+  - tapedeck
+#   xld
+
+python_packages:
+  - autopep8
+  - pylint
+  - mock
+  - rope
+  - cfn_flip

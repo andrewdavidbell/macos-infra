@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
+set -Eeuo pipefail
+
+TRACE=${TRACE:-}
 [[ "$TRACE" ]] && set -x
 
-install_homebrew() {
-    if [ -x "$(command -v /usr/local/bin/brew)" ]
+function install_homebrew() {
+    if [[ -x "$(command -v /usr/local/bin/brew)" ]]
     then
         echo Homebrew already installed
     else
@@ -11,7 +14,7 @@ install_homebrew() {
     fi
 }
 
-install_ansible() {
+function install_ansible() {
     if brew ls --versions ansible > /dev/null 2>&1
     then
         echo Homebrew ansible formula already installed
@@ -23,12 +26,11 @@ install_ansible() {
 #
 # Create a macOS keychain entry and password lookup file for the Ansible Vault password
 #
-install_ansible_vault_password() {
+function install_ansible_vault_password() {
     local ACCOUNT_NAME="macos-infra"
     local SERVICE="Ansible Vault"
 
-    /usr/bin/security find-generic-password -a "$ACCOUNT_NAME" -s "$SERVICE" > /dev/null 2>&1
-    if [[ $? -eq 0 ]]
+    if /usr/bin/security find-generic-password -a "$ACCOUNT_NAME" -s "$SERVICE" > /dev/null 2>&1
     then
         echo Keychain entry for Ansible Vault password already installed
     else
@@ -49,17 +51,17 @@ EOF
     fi
 }
 
-main() {
+function main() {
     install_homebrew
     install_ansible
 
     git clone https://github.com/andrewdavidbell/macos-infra.git
     cd ./macos-infra
 
-    install_ansible_vault_password
-    echo Copy sensitive data into staging area
-    echo Then run:
-    echo /usr/local/bin/ansible-playbook -K site.yml
+    # install_ansible_vault_password
+    echo "Copy sensitive data into staging area"
+    echo "Then run:"
+    echo "/usr/local/bin/ansible-playbook -K -i <home|work|client> site.yml -v"
 }
 
 main

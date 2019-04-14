@@ -6,10 +6,10 @@
     name: 1password
     state: present
 
-- name: Install 1Password license
-  copy:
-    src: License.onepassword-license
-    dest: "{{ ansible_user_dir }}/Library/Group\ Containers/2BUA8C4S2C.com.agilebits/License/"
-    owner: "{{ ansible_user_id }}"
-    group: staff
-    mode: 0644
+#- name: Install 1Password license
+#  copy:
+#    src: License.onepassword-license
+#    dest: "{{ ansible_user_dir }}/Library/Group\ Containers/2BUA8C4S2C.com.agilebits/License/"
+#    owner: "{{ ansible_user_id }}"
+#    group: staff
+#    mode: 0644

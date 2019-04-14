@@ -1,0 +1,4 @@
+---
+# <ansible_base_dir>/roles/visual_studio_code/defaults/main.yml
+
+visual_studio_code_state: present

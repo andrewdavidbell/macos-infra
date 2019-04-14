@@ -1,7 +1,0 @@
----
-# file: roles/azure_cli/tasks/main.yml
-
-- name: Install Azure CLI
-  homebrew:
-    name: azure-cli
-    state: present
