@@ -21,8 +21,8 @@
         mode: 0755
 
   roles:
-    # - role: zsh
-    #   tags: zsh
+    - role: zsh
+      tags: zsh
 
     - role: homebrew
       tags: homebrew
@@ -39,11 +39,11 @@
         group: staff
         mode: 0755
 
-    # - name: Alias to development directory
-    #   lineinfile:
-    #     path: "{{ ansible_user_dir }}/.zshrc"
-    #     regexp: '^alias dev='
-    #     line: 'alias dev="cd ~/Development"'
+    - name: Alias to development directory
+      lineinfile:
+        path: "{{ ansible_user_dir }}/.zshrc"
+        regexp: '^alias dev='
+        line: 'alias dev="cd ~/Development"'
 
     # - name: Apply Vim configuration
     #   blockinfile:

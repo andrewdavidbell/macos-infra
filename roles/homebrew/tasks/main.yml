@@ -2,7 +2,7 @@
 # <ansible_base_dir>/roles/homebrew/tasks/main.yml
 
 - name: Update homebrew
-  command: /usr/local/bin/brew update
+  command: brew update
   changed_when: false
 
 - name: Ensure configured taps (formula repositories) are installed
@@ -34,5 +34,5 @@
   tags: homebrew_formulae
 
 - name: Cleanup homebrew
-  command: /usr/local/bin/brew cleanup
+  command: brew cleanup
   changed_when: false

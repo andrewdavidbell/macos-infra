@@ -1,7 +1,7 @@
 ---
 # <ansible_base_dir>/group_vars/work.yml
 
-awscli_staging_dir: "~/.staging/awscli/work"
+# awscli_staging_dir: "~/.staging/awscli/work"
 ssh_staging_dir: "~/.staging/ssh/work"
 zsh_staging_dir: "~/.staging/zsh/work"
 
@@ -31,6 +31,7 @@ homebrew_casks:
   # - session-manager-plugin
   - slack
   - synology-drive
+  - synology-note-station-client
   # - vagrant
   # - virtualbox
   # - virtualbox-extension-pack
@@ -40,7 +41,7 @@ homebrew_formulae:
   # - awscli
   - colima
   # - dive
-  - dnsmasq
+  # - dnsmasq
   - docker
   - docker-compose
   - git
@@ -55,7 +56,7 @@ homebrew_formulae:
   # - kubectx
   # - kubetail
   # - kustomize
-  - mkcert
+  # - mkcert
   # - python
   # - saml2aws
   # - stern

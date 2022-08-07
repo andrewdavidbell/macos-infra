@@ -13,8 +13,6 @@
   blockinfile:
     path: "{{ ansible_user_dir }}/.zshrc"
     block: |
-      HOMEBREW_PREFIX=$(brew --prefix)
-
       source ${HOMEBREW_PREFIX}/share/antigen/antigen.zsh
 
       # Load the oh-my-zsh's library.

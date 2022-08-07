@@ -6,11 +6,19 @@ TRACE=${TRACE:-}
 [[ "$TRACE" ]] && set -x
 
 function install_homebrew() {
-    if [[ -x "$(command -v /usr/local/bin/brew)" ]]
+    if [[ -x "$(command -v /opt/homebrew/bin/brew)" ]]
     then
         echo Homebrew already installed
     else
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+        # Configure homebrew in this shell to allow the installation to proceed
+        # shellcheck disable=SC2016
+        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "${HOME}"/.zprofile
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+
+        # Turn off analytics
+        brew analytics off
     fi
 }
 
@@ -61,7 +69,7 @@ function main() {
     # install_ansible_vault_password
     echo "Copy sensitive data into staging area"
     echo "Then run:"
-    echo "/usr/local/bin/ansible-playbook -K -i <home|work|client> site.yml -v"
+    echo "ansible-playbook -K -i <home|work|client> site.yml -v"
 }
 
 main
