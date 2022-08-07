@@ -1,5 +1,5 @@
 ---
 # <ansible_base_dir>/roles/visual_studio_code/vars/main.yml
 
-visual_studio_code_extensions:
-  - { name: 'Shan.code-settings-sync', version: '3.4.3' }
+# visual_studio_code_extensions:
+  # - { name: '', version: '' }

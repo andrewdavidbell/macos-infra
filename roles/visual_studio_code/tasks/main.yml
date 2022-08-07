@@ -6,14 +6,14 @@
     name: visual-studio-code
     state: "{{ visual_studio_code_state }}"
 
-- name: Check if extensions exist
-  command: /usr/local/bin/code --list-extensions
-  register: vsc_extensions
-  changed_when: false
+# - name: Check if extensions exist
+#   command: /usr/local/bin/code --list-extensions
+#   register: vsc_extensions
+#   changed_when: false
 
-- name: Install {{ item.name }} extension
-  command: /usr/local/bin/code --install-extension {{ role_path }}/files/{{ item.name }}-{{ item.version }}.vsix
-  when:
-    - not ansible_check_mode
-    - vsc_extensions.stdout.find(item.name) == -1
-  with_items: "{{ visual_studio_code_extensions }}"
+# - name: Install {{ item.name }} extension
+#   command: /usr/local/bin/code --install-extension {{ role_path }}/files/{{ item.name }}-{{ item.version }}.vsix
+#   when:
+#     - not ansible_check_mode
+#     - vsc_extensions.stdout.find(item.name) == -1
+#   with_items: "{{ visual_studio_code_extensions }}"
