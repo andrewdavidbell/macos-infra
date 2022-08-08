@@ -13,7 +13,7 @@ homebrew_taps:
   # - johanhaleby/kubetail
 
 homebrew_casks:
-  # - 1password # post: install license key
+  - 1password # post: install license key
   - anaconda
   # - anki
   - firefox
@@ -30,8 +30,6 @@ homebrew_casks:
   - qlmarkdown
   # - session-manager-plugin
   - slack
-  - synology-drive
-  - synology-note-station-client
   # - vagrant
   # - virtualbox
   # - virtualbox-extension-pack
