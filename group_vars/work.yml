@@ -19,7 +19,7 @@ homebrew_casks:
   - firefox
   - flux
   - google-chrome
-  # - google-cloud-sdk
+  - google-cloud-sdk
   - iterm2
   # - kindle
   - leapp
@@ -41,24 +41,26 @@ homebrew_formulae:
   # - dive
   # - dnsmasq
   - docker
+  - docker-buildx
   - docker-compose
   - git
   # - gitlab-runner
   # - go
-  # - helm
+  - helm
   # - hugo
   # - jq
   # - kind
   # - kns
-  # - kubectl
+  - kubectl
   # - kubectx
   # - kubetail
-  # - kustomize
+  - kustomize
   # - mkcert
   # - python
   # - saml2aws
+  - shellcheck
   # - stern
-  # - terraform
+  - terraform
   # - tree
 
 # python_packages:
