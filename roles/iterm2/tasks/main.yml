@@ -19,4 +19,5 @@
   lineinfile:
     path: "{{ ansible_user_dir }}/.zshrc"
     regexp: '^\[\[ -e "${HOME}/.iterm2_shell_integration.zsh" \]\]'
+    insertafter: '# Additional configuration'
     line: '[[ -e "${HOME}/.iterm2_shell_integration.zsh" ]] && source "${HOME}/.iterm2_shell_integration.zsh"'

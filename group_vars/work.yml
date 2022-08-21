@@ -48,11 +48,11 @@ homebrew_formulae:
   # - go
   - helm
   # - hugo
-  # - jq
+  - jq
   # - kind
   # - kns
-  - kubectl
   # - kubectx
+  # - kubernetes-cli
   # - kubetail
   - kustomize
   # - mkcert

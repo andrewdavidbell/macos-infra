@@ -12,3 +12,24 @@
     regexp: '^  gcloud'
     insertafter: '# ANSIBLE MANAGED: Antigen'
     line: '  gcloud'
+
+# Note the gcloud plugin above fails to source the path and completion scripts
+# so do it manually
+- name: Ensure that the path is configured
+  lineinfile:
+    path: "{{ ansible_user_dir }}/.zshrc"
+    insertafter: '# Additional configuration'
+    line: 'source "${CLOUDSDK_HOME}/path.zsh.inc"'
+
+- name: Ensure that the completion is configured
+  lineinfile:
+    path: "{{ ansible_user_dir }}/.zshrc"
+    insertafter: '# Additional configuration'
+    line: 'source "${CLOUDSDK_HOME}/completion.zsh.inc"'
+
+- name: Ensure that the gke-gcloud-auth-plugin is used
+  lineinfile:
+    path: "{{ ansible_user_dir }}/.zshrc"
+    insertafter: '# Additional configuration'
+    line: 'export USE_GKE_GCLOUD_AUTH_PLUGIN=True'
+
