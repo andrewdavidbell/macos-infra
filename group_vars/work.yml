@@ -61,6 +61,7 @@ homebrew_formulae:
   - shellcheck
   # - stern
   - terraform
+  - terraform-docs
   # - tree
 
 # python_packages:
