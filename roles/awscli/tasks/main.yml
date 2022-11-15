@@ -23,14 +23,14 @@
     group: staff
     mode: 0600
 
-- name: Install AWS credentials file from fragments
-  assemble:
-    src: "{{ awscli_staging_dir }}/credentials.d"
-    dest: "{{ ansible_user_dir }}/.aws/credentials"
-    ignore_hidden: yes
-    owner: "{{ ansible_user_id }}"
-    group: staff
-    mode: 0600
+#- name: Install AWS credentials file from fragments
+#  assemble:
+#    src: "{{ awscli_staging_dir }}/credentials.d"
+#    dest: "{{ ansible_user_dir }}/.aws/credentials"
+#    ignore_hidden: yes
+#    owner: "{{ ansible_user_id }}"
+#    group: staff
+#    mode: 0600
 
 - name: Install aws aliases for zsh
   lineinfile:
@@ -39,3 +39,21 @@
     insertafter: '# ANSIBLE MANAGED: Antigen'
     line: '  aws'
 
+- name: Ensure /usr/local/bin directory exists
+  file:
+    path: /usr/local/bin
+    state: directory
+    owner: root
+    group: wheel
+    mode: 0755
+
+- name: Softlink AWS CLI for Leapp
+  file:
+    src: /opt/homebrew/bin/aws
+    dest: /usr/local/bin/aws
+#src: "{{ lookup('env', 'HOMEBREW_PREFIX', default='/opt/homebrew/') }}/bin/aws"
+    state: link
+    owner: root
+    group: wheel
+    mode: 0755
+  become: yes

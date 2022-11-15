@@ -1,7 +1,7 @@
 ---
 # <ansible_base_dir>/group_vars/work.yml
 
-# awscli_staging_dir: "~/.staging/awscli/work"
+awscli_staging_dir: "~/.staging/awscli/work"
 ssh_staging_dir: "~/.staging/ssh/work"
 zsh_staging_dir: "~/.staging/zsh/work"
 
@@ -18,7 +18,6 @@ homebrew_casks:
   # - anki
   - firefox
   - flux
-  - google-drive
   - google-chrome
   - google-cloud-sdk
   - iterm2
@@ -29,20 +28,21 @@ homebrew_casks:
   - micro-snitch # post: install license key
   # - postman
   - qlmarkdown
-  # - session-manager-plugin
+  - session-manager-plugin
   - slack
   # - vagrant
   # - virtualbox
   # - virtualbox-extension-pack
   - visual-studio-code
+  - xquartz
 
 homebrew_formulae:
-  # - awscli
+  - awscli
   - colima
   # - dive
   # - dnsmasq
   - docker
-  # - docker-buildx
+  - docker-buildx
   - docker-compose
   - git
   # - gitlab-runner
