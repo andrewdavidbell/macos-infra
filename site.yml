@@ -11,15 +11,6 @@
         group: staff
         mode: 0755
 
-    - name: Create soft links to iCloud Source location
-      file:
-        src: "{{ ansible_user_dir }}/Library/Mobile Documents/com~apple~CloudDocs/Source"
-        dest: "{{ ansible_user_dir }}/.source"
-        state: link
-        owner: "{{ ansible_user_id }}"
-        group: staff
-        mode: 0755
-
   roles:
     - role: zsh
       tags: zsh
