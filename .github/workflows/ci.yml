@@ -34,7 +34,7 @@ jobs:
           ls ${{ github.workspace }}
 
       - name: Install Ansible
-        run: sudo pip3 install ansible
+        run: brew install ansible
 
       - run: echo $(ansible --version)
 
