@@ -33,6 +33,10 @@
     group: staff
     mode: 0600
 
+- name: Check if config dir exists
+  local_action: stat path="{{ ssh_config_dir }}"
+  register: dir
+
 - name: Copy configuration files into place
   copy:
     src: "{{ ssh_config_dir }}/config.d/"
@@ -40,11 +44,13 @@
     owner: "{{ ansible_user_id }}"
     group: staff
     mode: 0600
+  when: dir.stat.exists
 
-- name: Copy keys into place
+- name: Copy key files into place
   copy:
     src: "{{ ssh_config_dir }}/keys/"
     dest: "{{ ansible_user_dir }}/.ssh/keys/"
     owner: "{{ ansible_user_id }}"
     group: staff
     mode: 0600
+  when: dir.stat.exists
