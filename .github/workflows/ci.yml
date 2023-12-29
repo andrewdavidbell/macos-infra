@@ -42,16 +42,14 @@ jobs:
 
       - name: Test the playbook's idempotence
         run: |
-          output=$(ansible-playbook --inventory ${INVENTORY} site.yml | grep -q 'changed=0.*failed=0')
-          echo ${output}
+          output=$(mktemp)
+          ansible-playbook --inventory ${INVENTORY} site.yml | tee -a ${output}
 
-          # if [[ idempotent ]]; then
-          #   echo 'Idempotence test: pass'
-          #   exit 0
-          # else
-          #   echo 'Idempotence test: fail'
-          #   exit 1
-          # fi;
+          idempotent=$(tail ${output} | grep -q 'changed=0.*failed=0')
+          if [[ "${idempotent}" -gt 0 ]]; then
+            echo 'Playbook not idempotent!'
+            exit 1
+          fi;
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
