@@ -33,8 +33,8 @@ jobs:
 
       - name: Install Ansible
         run: |
-          sudo easy_install pip
-          sudo pip install ansible
+          sudo pip3 install ansible --quiet
+          ansible --version
 
       - name: Check Syntax
         env:
