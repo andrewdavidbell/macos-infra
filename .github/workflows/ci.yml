@@ -2,9 +2,11 @@ name: CI
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches:
+      - ! master
   pull_request:
-    branches: [ $default-branch ]
+    branches:
+      - master
 
   workflow_dispatch:
 
@@ -45,7 +47,9 @@ jobs:
           output=$(mktemp)
           ansible-playbook --inventory ${INVENTORY} site.yml | tee ${output}
 
-          # anything_changed=$(tail ${output} | grep -q 'changed=0.*failed=0')
+          any_changes=$(tail ${output} | grep -q 'changed=0.*failed=0')
+          echo "any_changes: [${any_changes}]" >> $GITHUB_OUTPUT
+
           # if [[ "${anything_changed}" -gt 0 ]]; then
           #   echo "Playbook not idempotent!" >> $GITHUB_OUTPUT
           #   # TODO fix up playbook
