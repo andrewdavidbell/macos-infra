@@ -1,4 +1,0 @@
----
-# <ansible_base_dir>/roles/the_hit_list/defaults/main.yml
-
-the_hit_list_state: present

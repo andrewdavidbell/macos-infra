@@ -67,8 +67,7 @@ function main() {
     cd ./macos-infra
 
     # install_ansible_vault_password
-    echo "Copy sensitive data into staging area"
-    echo "Then run:"
+    echo "Run the following command to provision the infrastructure:"
     echo "ansible-playbook -K -i <home|work|client> site.yml -v"
 }
 

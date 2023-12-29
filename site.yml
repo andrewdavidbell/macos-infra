@@ -1,16 +1,6 @@
 ---
 - hosts: all
 
-  pre_tasks:
-    - name: Create soft links to iCloud Staging location
-      file:
-        src: "{{ ansible_user_dir }}/Library/Mobile Documents/com~apple~CloudDocs/Staging"
-        dest: "{{ ansible_user_dir }}/.staging"
-        state: link
-        owner: "{{ ansible_user_id }}"
-        group: staff
-        mode: 0755
-
   roles:
     - role: zsh
       tags: zsh
@@ -22,20 +12,29 @@
       tags: ssh
 
   tasks:
-    - name: Create development directory
+    - name: Create source code directory
       file:
-        path: "{{ ansible_user_dir }}/Development"
+        path: "{{ ansible_user_dir }}/Local Source"
         state: directory
         owner: "{{ ansible_user_id }}"
         group: staff
         mode: 0755
 
-    - name: Alias to development directory
+    - name: Create soft link to source code directory
+      file:
+        src: "{{ ansible_user_dir }}/Local Source"
+        dest: "{{ ansible_user_dir }}/Documents/Local Source"
+        state: link
+        owner: "{{ ansible_user_id }}"
+        group: staff
+        mode: 0755
+
+    - name: Alias to source code directory
       lineinfile:
         path: "{{ ansible_user_dir }}/.zshrc"
-        regexp: '^alias dev='
+        regexp: '^alias src='
         insertafter: '# Additional configuration'
-        line: 'alias dev="cd ~/Development"'
+        line: 'alias src="cd ~/Documents/Local Source"'
 
     # - name: Apply Vim configuration
     #   blockinfile:

@@ -61,14 +61,27 @@
     create: yes
 
 - name: Check if custom shell configuration exists
-  local_action: stat path="{{ zsh_staging_dir }}/zshrc_custom"
+  local_action: stat path="{{ zsh_config_dir }}/zshrc_custom"
   register: custom
 
 - name: Copy custom shell configuration if it exists
   copy:
-    src: "{{ zsh_staging_dir }}/zshrc_custom"
+    src: "{{ zsh_config_dir }}/zshrc_custom"
     dest: "{{ ansible_user_dir }}/.zshrc_custom"
     owner: "{{ ansible_user_id }}"
     group: staff
     mode: 0644
   when: custom.stat.exists
+
+- name: Check if p10k prompt configuration exists
+  local_action: stat path="{{ zsh_config_dir }}/p10k.zsh"
+  register: p10k
+
+- name: Copy p10k prompt configuration if it exists
+  copy:
+    src: "{{ zsh_config_dir }}/p10k.zsh"
+    dest: "{{ ansible_user_dir }}/.p10k.zsh"
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0644
+  when: p10k.stat.exists

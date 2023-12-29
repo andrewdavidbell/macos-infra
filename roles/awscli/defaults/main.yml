@@ -1,4 +1,4 @@
 ---
 # <ansible_base_dir>/roles/awscli/defaults/main.yml
 
-awscli_staging_dir: "{{ role_path }}/files"
+aws_config_dir: "{{ role_path }}/files"

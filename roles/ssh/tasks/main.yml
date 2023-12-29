@@ -35,7 +35,7 @@
 
 - name: Copy configuration files into place
   copy:
-    src: "{{ ssh_staging_dir }}/config.d/"
+    src: "{{ ssh_config_dir }}/config.d/"
     dest: "{{ ansible_user_dir }}/.ssh/config.d/"
     owner: "{{ ansible_user_id }}"
     group: staff
@@ -43,7 +43,7 @@
 
 - name: Copy keys into place
   copy:
-    src: "{{ ssh_staging_dir }}/keys/"
+    src: "{{ ssh_config_dir }}/keys/"
     dest: "{{ ansible_user_dir }}/.ssh/keys/"
     owner: "{{ ansible_user_id }}"
     group: staff

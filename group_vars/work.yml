@@ -1,70 +1,23 @@
 ---
 # <ansible_base_dir>/group_vars/work.yml
 
-awscli_staging_dir: "~/.staging/awscli/work"
-ssh_staging_dir: "~/.staging/ssh/work"
-zsh_staging_dir: "~/.staging/zsh/work"
-
-homebrew_taps:
-  - homebrew/cask-drivers
-  # - versent/taps
-  # - wagoodman/dive
-  # - blendle/blendle # For kns
-  # - johanhaleby/kubetail
+aws_config_dir: "~/Documents/Config/aws"
+ssh_config_dir: "~/Documents/Config/ssh"
+zsh_config_dir: "~/Documents/Config/zsh"
 
 homebrew_casks:
-  - 1password # post: install license key
-  # - 1password-cli
-  - anaconda
-  # - anki
+  - docker
   - firefox
-  - flux
   - google-chrome
   - google-cloud-sdk
   - iterm2
-  # - kindle
-  - leapp
-  - lepton
-  - little-snitch # post: install license key
-  - micro-snitch # post: install license key
-  - microsoft-edge
-  # - postman
-  - qlmarkdown
-  - session-manager-plugin
+  - logi-options-plus
+  - obsidian
   - slack
-  - utm
-  # - vagrant
-  # - virtualbox
-  # - virtualbox-extension-pack
   - visual-studio-code
-  # - xquartz
 
 homebrew_formulae:
   - awscli
-  - colima
-  # - dive
-  # - dnsmasq
-  # - docker
-  # - docker-buildx
-  # - docker-compose
   - git
-  - git-remote-codecommit
-  # - gitlab-runner
-  # - go
-  - helm
-  # - hugo
   - jq
-  - kind
-  # - kns
-  # - kubectx
-  # - kubernetes-cli
-  # - kubetail
-  - kustomize
-  # - mkcert
-  # - python
-  # - saml2aws
   - shellcheck
-  # - stern
-  # - terraform
-  # - terraform-docs
-  # - tree
