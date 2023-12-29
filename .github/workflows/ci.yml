@@ -16,6 +16,8 @@ jobs:
   ci:
     name: Test Ansible provisioning
     runs-on: macos-latest
+    env:
+      INVENTORY: work # inputs.inventory || work?
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -32,16 +34,16 @@ jobs:
           ls ${{ github.workspace }}
 
       - name: Install Ansible
-        run: |
-          sudo pip3 install ansible --quiet
-          ansible --version
+        run: sudo pip3 install ansible
+
+      - run: echo $(ansible --version)
 
       - name: Check Syntax
-        env:
-          inventory: work
-        run: ansible-playbook --become --inventory ${inventory} --syntax-check site.yml
+        run: ansible-playbook --become --inventory ${INVENTORY} --syntax-check site.yml
+
+      - name: Test Provisioning
+        run: ansible-playbook --become --inventory ${INVENTORY} site.yml
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
-      # test-installation:
       # test-idempotence:
