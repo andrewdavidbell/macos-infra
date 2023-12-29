@@ -43,14 +43,14 @@ jobs:
       - name: Test the playbook's idempotence
         run: |
           output=$(mktemp)
-          ansible-playbook --inventory ${INVENTORY} site.yml | tee -a ${output}
+          ansible-playbook --inventory ${INVENTORY} site.yml | tee ${output}
 
-          anything_changed=$(tail ${output} | grep -q 'changed=0.*failed=0')
-          if [[ "${anything_changed}" -gt 0 ]]; then
-            echo "Playbook not idempotent!" >> $GITHUB_OUTPUT
-            # TODO fix up playbook
-            # exit 1
-          fi;
+          # anything_changed=$(tail ${output} | grep -q 'changed=0.*failed=0')
+          # if [[ "${anything_changed}" -gt 0 ]]; then
+          #   echo "Playbook not idempotent!" >> $GITHUB_OUTPUT
+          #   # TODO fix up playbook
+          #   # exit 1
+          # fi;
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
