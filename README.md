@@ -1,5 +1,4 @@
-# Ansible macOS provisioning
-[![Build Status](https://travis-ci.org/andrewdavidbell/macos-infra.svg?branch=generic-list-style)](https://travis-ci.org/andrewdavidbell/macos-infra)
+# Ansible macOS infrastructure provisioning
+![CI workflow status](https://github.com/andrewdavidbell/macos-infra/actions/workflows/ci.yml/badge.svg)
 
-Ansible automation to configure macOS-based machines for software development
-and personal use.
+Ansible automation to configure my macOS machines

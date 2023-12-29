@@ -14,6 +14,10 @@
     group: staff
     mode: 0755
 
+- name: Check if config dir exists
+  local_action: stat path="{{ aws_config_dir }}"
+  register: dir
+
 - name: Install AWS config file from fragments
   assemble:
     src: "{{ aws_config_dir }}/config.d"
@@ -22,6 +26,7 @@
     owner: "{{ ansible_user_id }}"
     group: staff
     mode: 0600
+  when: dir.stat.exists
 
 - name: Install aws aliases for zsh
   lineinfile:
@@ -30,10 +35,10 @@
     insertafter: '# ANSIBLE MANAGED: Antigen'
     line: '  aws'
 
-- name: Ensure /usr/local/bin directory exists
-  file:
-    path: /usr/local/bin
-    state: directory
-    owner: root
-    group: wheel
-    mode: 0755
+# - name: Ensure /usr/local/bin directory exists
+#   file:
+#     path: /usr/local/bin
+#     state: directory
+#     owner: root
+#     group: wheel
+#     mode: 0755
