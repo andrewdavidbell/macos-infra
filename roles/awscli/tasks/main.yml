@@ -35,10 +35,10 @@
     insertafter: '# ANSIBLE MANAGED: Antigen'
     line: '  aws'
 
-- name: Ensure /usr/local/bin directory exists
-  file:
-    path: /usr/local/bin
-    state: directory
-    owner: root
-    group: wheel
-    mode: 0755
+# - name: Ensure /usr/local/bin directory exists
+#   file:
+#     path: /usr/local/bin
+#     state: directory
+#     owner: root
+#     group: wheel
+#     mode: 0755
