@@ -34,12 +34,24 @@ jobs:
 
       - run: ansible --version
 
-      - name: Check Syntax
+      - name: Verify the playbook's syntax
         run: ansible-playbook --inventory ${INVENTORY} --syntax-check site.yml
 
-      - name: Test Provisioning
+      - name: Test the playbook
         run: ansible-playbook --inventory ${INVENTORY} site.yml
+
+      - name: Test the playbook's idempotence
+        run: |
+          output=$(ansible-playbook --inventory ${INVENTORY} site.yml | grep -q 'changed=0.*failed=0')
+          echo ${output}
+
+          # if [[ idempotent ]]; then
+          #   echo 'Idempotence test: pass'
+          #   exit 0
+          # else
+          #   echo 'Idempotence test: fail'
+          #   exit 1
+          # fi;
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
-      # test-idempotence:
