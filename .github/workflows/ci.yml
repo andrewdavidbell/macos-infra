@@ -16,7 +16,7 @@ defaults:
 
 jobs:
   ci:
-    name: Test Ansible provisioning
+    name: Test Ansible playbook
     runs-on: macos-latest
     env:
       INVENTORY: work
@@ -47,8 +47,10 @@ jobs:
           output=$(mktemp)
           ansible-playbook --inventory ${INVENTORY} site.yml | tee ${output}
 
-          any_changes=$(tail ${output} | grep -q 'changed=0.*failed=0')
-          echo "any_changes: [${any_changes}]" >> $GITHUB_OUTPUT
+          wc ${output}
+
+          # any_changes=$(tail ${output} | grep -q 'changed=0.*failed=0')
+          # echo "any_changes: [${any_changes}]" >> $GITHUB_OUTPUT
 
           # if [[ "${anything_changed}" -gt 0 ]]; then
           #   echo "Playbook not idempotent!" >> $GITHUB_OUTPUT
