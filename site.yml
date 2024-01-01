@@ -14,7 +14,7 @@
   tasks:
     - name: Create source code directory
       file:
-        path: "{{ ansible_user_dir }}/Local Source"
+        path: "{{ ansible_user_dir }}/Source"
         state: directory
         owner: "{{ ansible_user_id }}"
         group: staff
@@ -22,19 +22,19 @@
 
     - name: Create soft link to source code directory
       file:
-        src: "{{ ansible_user_dir }}/Local Source"
+        src: "{{ ansible_user_dir }}/Source"
         dest: "{{ ansible_user_dir }}/Documents/Local Source"
         state: link
         owner: "{{ ansible_user_id }}"
         group: staff
         mode: 0755
 
-    - name: Alias to source code directory
+    - name: Shell alias to source code directory
       lineinfile:
         path: "{{ ansible_user_dir }}/.zshrc"
         regexp: '^alias src='
         insertafter: '# Additional configuration'
-        line: 'alias src="cd ~/Documents/Local Source"'
+        line: 'alias src="cd ~/Documents/Local\ Source"'
 
     # - name: Apply Vim configuration
     #   blockinfile:
