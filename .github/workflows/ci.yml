@@ -48,9 +48,9 @@ jobs:
           ansible-playbook --inventory ${INVENTORY} site.yml | tee ${output}
 
           set +e
-          any_changes=$(tail ${output} | grep -q 'changed=0.*failed=0')
+          anything_changed=$(tail ${output} | grep -q 'changed=0.*failed=0'; echo $?)
           set -e
-          echo "any_changes: [${any_changes}]" >> $GITHUB_OUTPUT
+          echo "anything_changed: [${anything_changed}]" >> $GITHUB_OUTPUT
 
           if [[ "${anything_changed}" -gt 0 ]]; then
             echo "Playbook not idempotent!" >> $GITHUB_OUTPUT
