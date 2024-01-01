@@ -44,8 +44,6 @@ jobs:
 
       - name: Test the playbook's idempotence
         run: |
-          # output=$(mktemp)
-          # ansible-playbook --inventory ${INVENTORY} site.yml | tee ${output}
           ansible-playbook --inventory ${INVENTORY} site.yml > ansible_output
 
           set +e
