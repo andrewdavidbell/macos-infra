@@ -49,7 +49,10 @@ jobs:
           set +e
           anything_changed=$(tail ansible_output | grep -q 'changed=0.*failed=0'; echo $?)
           set -e
-          echo "anything_changed=$anything_changed" >> $GITHUB_OUTPUT
+
+          if [[ "${anything_changed}" -gt 0 ]]; then
+            echo "Playbook not idempotent!"
+          fi
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
