@@ -2,6 +2,8 @@ name: CI
 
 on:
   push:
+    branches-ignore:
+      - master
   pull_request:
     branches:
       - master
@@ -42,19 +44,15 @@ jobs:
 
       - name: Test the playbook's idempotence
         run: |
-          output=$(mktemp)
-          ansible-playbook --inventory ${INVENTORY} site.yml | tee ${output}
+          ansible-playbook --inventory ${INVENTORY} site.yml > ansible_output
 
-          wc ${output}
+          set +e
+          anything_changed=$(tail ansible_output | grep -q 'changed=0.*failed=0'; echo $?)
+          set -e
 
-          # any_changes=$(tail ${output} | grep -q 'changed=0.*failed=0')
-          # echo "any_changes: [${any_changes}]" >> $GITHUB_OUTPUT
-
-          # if [[ "${anything_changed}" -gt 0 ]]; then
-          #   echo "Playbook not idempotent!" >> $GITHUB_OUTPUT
-          #   # TODO fix up playbook
-          #   # exit 1
-          # fi;
+          if [[ "${anything_changed}" -gt 0 ]]; then
+            echo "Playbook not idempotent!"
+          fi
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
