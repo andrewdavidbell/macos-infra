@@ -7,9 +7,11 @@ zsh_config_dir: "~/Documents/Config/zsh"
 
 homebrew_casks:
   - 1password
-  - arduino
+  # - arduino
   - docker
   - firefox
+  - google-chrome
+  - google-cloud-sdk
   - iterm2
   - little-snitch
   - logi-options-plus
@@ -29,3 +31,4 @@ homebrew_formulae:
   - awscli
   - git
   - jq
+  - shellcheck

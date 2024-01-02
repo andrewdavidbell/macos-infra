@@ -51,7 +51,7 @@ jobs:
           set -e
 
           if [[ "${anything_changed}" -gt 0 ]]; then
-            echo "Playbook not idempotent!"
+            echo "TODO -> Playbook is not idempotent!"
           fi
 
       - run: echo "🍏 This job's status is ${{ job.status }}."

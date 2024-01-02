@@ -6,24 +6,24 @@
     name: little-snitch
     state: present
 
-- name: Install Little Snitch license
-  copy:
-    src: registration.xpl
-    dest: "/Library/Application\ Support/Objective\ Development/Little\ Snitch/"
-    owner: root
-    group: wheel
-    mode: 0600
-  become: true
+# - name: Install Little Snitch license
+#   copy:
+#     src: registration.xpl
+#     dest: "/Library/Application\ Support/Objective\ Development/Little\ Snitch/"
+#     owner: root
+#     group: wheel
+#     mode: 0600
+#   become: true
 
 - name: Install Micro Snitch
   homebrew_cask:
     name: micro-snitch
     state: present
 
-- name: Install Micro Snitch license
-  copy:
-    src: License.plist
-    dest: "{{ ansible_user_dir }}/Library/Application\ Support/Micro\ Snitch/"
-    owner: "{{ ansible_user_id }}"
-    group: staff
-    mode: 0644
+# - name: Install Micro Snitch license
+#   copy:
+#     src: License.plist
+#     dest: "{{ ansible_user_dir }}/Library/Application\ Support/Micro\ Snitch/"
+#     owner: "{{ ansible_user_id }}"
+#     group: staff
+#     mode: 0644
