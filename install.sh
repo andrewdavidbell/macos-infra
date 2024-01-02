@@ -68,7 +68,7 @@ function main() {
 
     # install_ansible_vault_password
     echo "Run the following command to provision the infrastructure:"
-    echo "ansible-playbook -i <home|work|client> site.yml -v"
+    echo "ansible-playbook -i <home|work> site.yml -v"
 }
 
 main
